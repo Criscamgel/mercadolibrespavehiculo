@@ -1,0 +1,16 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenido{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+    div, img{
+        align-self: center;
+        justify-self: left;
+        p{
+            font-size: 11px;
+            color: $color-grisDos;
+        }
+    }
+}

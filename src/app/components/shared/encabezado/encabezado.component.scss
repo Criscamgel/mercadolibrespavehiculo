@@ -1,0 +1,16 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenido{
+    display: grid;
+    grid-template-columns: $general-margen 1fr $general-margen;
+    background-color: $color-principal;
+    height: 10vh;
+    img{
+        grid-column: 2;
+        /* alineación vertical */
+        align-self: center;
+        /* alineación horizontal */
+        justify-self: left;
+    }
+}
