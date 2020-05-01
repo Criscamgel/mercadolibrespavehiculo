@@ -7,10 +7,13 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ApiMercadolibreService {
 
+  idVehiculo: string;
+
   constructor(private http: HttpClient) { }
 
   getInfoVehiculo(idVehiculo: string) {
     const url = `${environment.urlApi}${idVehiculo}`;
     return this.http.get(url);
-  }
+}
+
 }

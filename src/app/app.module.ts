@@ -6,13 +6,17 @@ import { ViabilizaVehiculoComponent } from './components/vistas/viabiliza-vehicu
 import { HttpClientModule } from '@angular/common/http';
 import { EncabezadoComponent } from './components/shared/encabezado/encabezado.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { DetallesVehiculoComponent } from './components/detalles-vehiculo/detalles-vehiculo.component';
+import { FormularioViabilizacionComponent } from './components/formulario-viabilizacion/formulario-viabilizacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViabilizaVehiculoComponent,
     EncabezadoComponent,
-    FooterComponent
+    FooterComponent,
+    DetallesVehiculoComponent,
+    FormularioViabilizacionComponent
   ],
   imports: [
     BrowserModule,
