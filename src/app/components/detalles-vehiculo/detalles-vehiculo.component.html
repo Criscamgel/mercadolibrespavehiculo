@@ -9,11 +9,11 @@
         </p>
     </div>
 
-    <div class="contenido">
+    <div class="contenido titulo">
         <img [src]="infoVehiculo.pictures[0].url" alt="">
         <div class="detallesTecnicos">
-            <div>
-                <b>Marca:</b>{{brand.value_name}}</div>
+            <div *ngFor="let item of informacion">
+                <b>{{item.nombre}}:</b> {{item.valor}}</div>
             </div>        
         <app-footer></app-footer>
     </div>

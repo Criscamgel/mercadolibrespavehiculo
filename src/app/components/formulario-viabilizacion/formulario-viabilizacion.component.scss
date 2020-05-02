@@ -1,0 +1,17 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+
+.contCampoDos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.tituloCampo{
+    font-size: 15px;
+    color: $color-grisDos;
+}
+
+.cifra{
+    font-size: 15px;
+    font-weight: 700;
+}

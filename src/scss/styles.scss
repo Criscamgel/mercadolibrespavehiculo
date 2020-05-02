@@ -2,17 +2,6 @@
 @import "./mixins";
 @import "./fonts";
 
-/* @import "fonts";
-@import '~@angular/material/theming';
-
-@include mat-core();
-
-$my-app-primary: mat-palette($mat-grey);
-$my-app-accent: mat-palette($mat-grey, 600, A100, A400);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
-
-@include angular-material-theme($my-app-theme); */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -29,5 +18,74 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
   color: $color-grisDos;
 }
 
+/* Estilos especificos Stepper Material */
+.mat-horizontal-stepper-header-container{
+  display: grid !important;
+  grid-template-columns: repeat(3, auto) !important;
+  grid-template-rows: 1fr !important;
+}
+
+.mat-horizontal-stepper-header{
+  display: grid !important;
+  align-self: center !important;
+  justify-self: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.mat-step-header{
+  grid-row: 1 !important;
+  align-self: center !important;
+  justify-self: center !important;
+}
+
+.mat-step-header .mat-step-header-ripple{
+  position: relative !important;
+  display: grid !important;
+  padding-top: 15px;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon{
+  align-self: center !important;
+  justify-self: center !important;
+  margin: 0px !important;
+}
+
+/* Línea */
+.mat-stepper-horizontal-line{
+  border: 1px solid !important;
+  grid-row: 1 !important;
+  margin: 0 -90px !important;
+}
+
+.mat-stepper-horizontal{
+  background-color: transparent !important;
+}
+
+/* Colores selección Step */
+.mat-step-icon{
+  background-color: $color-negro !important;
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon-selected{
+  background-color: $color-principal !important;
+  .mat-step-icon-content{
+    color: $color-negro;
+  }
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active{
+  grid-row: 1;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.mat-horizontal-content-container{
+  background-color: $color-blanco;
+}
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
+import { constantes } from 'src/constants/constantes';
 
 @Component({
   selector: 'app-detalles-vehiculo',
@@ -9,14 +10,7 @@ import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.servic
 export class DetallesVehiculoComponent  {
 
   infoVehiculo: any;
-  informacion: any = {
-    marca: "",
-    modelo:"",
-    version: "",
-    anio: 0,
-    cilindrada: "",
-    kilometros: ""
-  };
+  informacion: any = [];
 
   constructor(private apiMercadolibre: ApiMercadolibreService) {
     this.obtenerInfoVehiculo();
@@ -26,17 +20,17 @@ export class DetallesVehiculoComponent  {
     this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
     .subscribe(infoVehiculo => {
       this.infoVehiculo = infoVehiculo;
-      this.informacion.marca = this.obtenerNombreValue('BRAND');
-      this.informacion.modelo = this.obtenerNombreValue('MODEL');
-      this.informacion.version = this.obtenerNombreValue('TRIM');
-      this.informacion.anio = this.obtenerNombreValue('VEHICLE_YEAR');
-      this.informacion.cilindrada = this.obtenerNombreValue('ENGINE_DISPLACEMENT');
-      this.informacion.kilometros = this.obtenerNombreValue('KILOMETERS');
+      constantes.idInformacion.forEach((item, index) => {
+        const propiedad = {nombre: '', valor: ''};
+        propiedad.nombre = item;
+        propiedad.valor = this.obtenerNombreValue(item);
+        this.informacion.push(propiedad);
+        });
     });
   }
 
-  obtenerNombreValue(idTexto: string) {
-    const objeto = this.infoVehiculo.attributes.find(item => item.id === idTexto);
+  obtenerNombreValue(nameTexto: string) {
+    const objeto = this.infoVehiculo.attributes.find((item: any) => item.name === nameTexto);
     return objeto.value_name;
   }
 

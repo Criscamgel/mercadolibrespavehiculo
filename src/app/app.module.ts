@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { EncabezadoComponent } from './components/shared/encabezado/encabezado.c
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { DetallesVehiculoComponent } from './components/detalles-vehiculo/detalles-vehiculo.component';
 import { FormularioViabilizacionComponent } from './components/formulario-viabilizacion/formulario-viabilizacion.component';
+import { MaterialModule } from 'src/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,11 @@ import { FormularioViabilizacionComponent } from './components/formulario-viabil
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
