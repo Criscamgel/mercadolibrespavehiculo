@@ -7,23 +7,31 @@
         <div class="contCampoUno">
             <div>
                 <p class="tituloCampo">Costo total del vehiculo</p>
-                <p class="cifra">$156'800.000</p>
+                <p class="cifra">{{ infoVehiculo.price | number:'1.0':'es'}}</p>
             </div>
         </div>
 
-        <mat-label>Cuota inicial</mat-label>
+        <mat-label>Cuota inicial (Porcentaje {{porcentaje | number:'1.0-1':'es'}}%)</mat-label>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput placeholder="Last name, First name" formControlName="cuotaInicial" required>
+          <input 
+          matInput
+          currencyMask 
+          placeholder="Cuota inicial"
+          [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }" 
+          formControlName="cuotaInicial"
+          required
+          >
         </mat-form-field>
 
         <div class="contCampoDos">
             <div>
-                <p class="tituloCampo">Costo total del vehiculo</p>
-                <p class="cifra">$156'800.000</p>
+                <p class="tituloCampo">Valor total a financiar</p>
+                <p class="cifra">$ {{ resultadoCalculadora.valorTotalFinanciar | number:'1.0':'es'}}</p>
             </div>
             <div>
-                <p class="tituloCampo">Costo total del vehiculo</p>
-                <p class="cifra">$156'800.000</p>
+                <p class="tituloCampo">Tasa Aproximada</p>
+                <p class="cifra">{{ const.tasa * 100 | number:'1.0-1':'es'}} %</p>
+                <p class="menuda">Sujeto a perfil de cliente*</p>
             </div>
         </div>
 
@@ -31,28 +39,48 @@
             <p class="tituloCampo">Selecciona el número de cuotas</p>
         </div>
 
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="48">Option 1</mat-radio-button>
-            <mat-radio-button value="60">Option 2</mat-radio-button>
-            <mat-radio-button value="72">Option 3</mat-radio-button>
-            <mat-radio-button value="84">Option 4</mat-radio-button>
+        <mat-radio-group formControlName="cuotas">
+            <mat-radio-button
+            *ngFor="let cuota of const.cuotas" 
+            [value]="cuota"
+            (click)="clickRadioCuota($event)"
+            >{{cuota}}</mat-radio-button>
         </mat-radio-group>
 
+        <div class="contResultado center">
+            <b>{{primero.value.cuotas}}</b> pagos mensuales de <b>$ {{ resultadoCalculadora.valorCuota | number:'1.0':'es'}}</b>
+        </div>
 
-        <div>
-          <button mat-button matStepperNext>Next</button>
+        <div class="contBoton center">
+          <button mat-button matStepperNext>Financiar mi {{ infoVehiculo.title | primeraPalabra }}</button>
         </div>
       </form>
     </mat-step>
+
+    <!-- Segundo Formulario -->
 
     <mat-step [stepControl]="segundo">
       <form [formGroup]="segundo">
         <ng-template matStepLabel>Ingresa tus datos</ng-template>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="nombre" placeholder="Ex. 1 Main St, New York, NY" required>
+          <mat-label>¿Cómo te llamas?</mat-label>
+          <input matInput formControlName="nombre" placeholder="¿Cómo te llamas?*" required>
         </mat-form-field>
+
+        <div class="contCampoDos">            
+            
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>¿Cómo te llamas?</mat-label>
+                <input matInput formControlName="nombre" placeholder="¿Cómo te llamas?*" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nro. de identificación</mat-label>
+                <input matInput formControlName="nombre" placeholder="Nro. de identificación*" required>
+            </mat-form-field>
+
+        </div>
 
         <div>
           <button mat-button matStepperPrevious>Back</button>

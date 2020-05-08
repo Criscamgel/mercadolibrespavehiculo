@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ViabilizaVehiculoComponent } from './components/vistas/viabiliza-vehiculo/viabiliza-vehiculo.component';
@@ -11,6 +11,11 @@ import { DetallesVehiculoComponent } from './components/detalles-vehiculo/detall
 import { FormularioViabilizacionComponent } from './components/formulario-viabilizacion/formulario-viabilizacion.component';
 import { MaterialModule } from 'src/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { PrimeraPalabraPipe } from './pipes/primera-palabra.pipe';
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EncabezadoComponent,
     FooterComponent,
     DetallesVehiculoComponent,
-    FormularioViabilizacionComponent
+    FormularioViabilizacionComponent,
+    PrimeraPalabraPipe
   ],
   imports: [
     BrowserModule,
@@ -27,9 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CurrencyMaskModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

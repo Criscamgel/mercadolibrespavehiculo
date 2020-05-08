@@ -26,6 +26,7 @@ export class DetallesVehiculoComponent  {
         propiedad.valor = this.obtenerNombreValue(item);
         this.informacion.push(propiedad);
         });
+      this.apiMercadolibre.infoVehiculo = this.infoVehiculo;
     });
   }
 

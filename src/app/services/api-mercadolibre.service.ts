@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ApiMercadolibreService {
 
   idVehiculo: string;
+  infoVehiculo = [];
 
   constructor(private http: HttpClient) { }
 
