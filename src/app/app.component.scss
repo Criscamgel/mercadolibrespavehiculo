@@ -3,4 +3,9 @@
 
 .superContenedor{
     background-color: $color-grisUno;
+    .contenedor{
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 5%;
+    }
 }

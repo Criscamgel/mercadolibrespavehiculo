@@ -1,6 +1,6 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [disableRipple]="true" *ngIf="infoVehiculo" [linear]="isLinear" #stepper>
 
-    <mat-step [stepControl]="primero">
+    <mat-step [stepControl]="primero" [editable]="editable">
       <form [formGroup]="primero">
         <ng-template matStepLabel>Calcula tu cuota</ng-template>
 
@@ -59,42 +59,150 @@
 
     <!-- Segundo Formulario -->
 
-    <mat-step [stepControl]="segundo">
+    <mat-step [stepControl]="segundo" [editable]="editable">
       <form [formGroup]="segundo">
         <ng-template matStepLabel>Ingresa tus datos</ng-template>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>¿Cómo te llamas?</mat-label>
-          <input matInput formControlName="nombre" placeholder="¿Cómo te llamas?*" required>
+          <input 
+          matInput 
+          formControlName="Nombre"
+          placeholder="¿Cómo te llamas?*"
+          (keypress)="patternCoincide($event, const.patternLetter)"
+          required
+          >
+          <mat-error *ngIf="nombreNovalido">Necesitamos saber tu nombre, diligencia tu nombre completo</mat-error>
         </mat-form-field>
 
         <div class="contCampoDos">            
             
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>¿Cómo te llamas?</mat-label>
-                <input matInput formControlName="nombre" placeholder="¿Cómo te llamas?*" required>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Tipo de Identificación</mat-label>
+                <select 
+                    matNativeControl
+                    formControlName="TipoDocumento"
+                >
+                    <option 
+                    *ngFor="let obj of const.tipoDocumento" 
+                    [ngValue]="obj.value" 
+                    [disabled]="obj.value == 0"
+                    required
+                    >
+                    {{obj.name}}</option>
+                </select>
+                <mat-error *ngIf="tipoIdNoValido">Necesitamos saber tu tipo de identificación</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Nro. de identificación</mat-label>
-                <input matInput formControlName="nombre" placeholder="Nro. de identificación*" required>
-            </mat-form-field>
+                <input 
+                matInput
+                formControlName="NumeroDocumento" 
+                placeholder="Nro. de identificación*"
+                (keypress)="patternCoincide($event, const.patternNumber)"
+                required
+                >
+                <mat-error *ngIf="idNoValido">Necesitamos saber tu tipo de identificación, diligencia una identificación válida</mat-error>
+            </mat-form-field>           
 
         </div>
 
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Número de celular</mat-label>
+            <input 
+            matInput 
+            formControlName="Celular"
+            placeholder="Número de celular*"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            required
+            >
+            <mat-error *ngIf="celularNoValido">Necesitamos saber tu celular, diligencia un número de celular válido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo electrónico</mat-label>
+            <input 
+            matInput 
+            formControlName="CorreoPersonal"
+            placeholder="Correo electrónico*"
+            required
+            >
+            <mat-error *ngIf="correoNoValido">Necesitamos saber tu correo electronico, diligencia un correo electronico válido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Selecciona tu ocupación</mat-label>
+            <select 
+                matNativeControl
+                formControlName="ActividadEconomica"
+            >
+                <option 
+                *ngFor="let obj of const.ocupaciones" 
+                [ngValue]="obj.value" 
+                [disabled]="obj.value == 0"
+                required
+                >
+                {{obj.name}}</option>
+            </select>
+            <mat-error *ngIf="actividadEconomicaNoValido">Necesitamos saber ocupación</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>¿Cuáles son tus ingresos mensuales?</mat-label>
+            <input 
+            matInput
+            currencyMask 
+            placeholder="¿Cuáles son tus ingresos mensuales?*"
+            [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }" 
+            formControlName="IngresoMensual"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            required
+            >
+            <mat-error *ngIf="ingresoMensualNoValido">Necesitamos saber tus ingresos mensuales</mat-error>
+          </mat-form-field>
+
+          <div class="contCampoUno center">
+
+          <mat-checkbox 
+            required
+            color="primary"
+            value=""
+            formControlName="AutorizaConsultaCentrales"
+            ></mat-checkbox>
+            Acepto los <strong class="pointer" (click)="modalTyc=true">términos y condiciones</strong>
+
+          </div>
+
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button 
+          mat-button
+          matStepperNext
+          (click)="autenticar()"
+          [disabled] = "segundo.invalid"
+          >Comprobar mis datos</button>
         </div>
       </form>
     </mat-step>
 
-    <mat-step>
+    <!-- Tercer Paso -->
+
+    <mat-step [editable]="editable">
       <ng-template matStepLabel>Respuesta inmediata</ng-template>
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button matStepperPrevious (click)="organizarInfo()">Reset</button>
       </div>
     </mat-step>
 </mat-horizontal-stepper>
+
+<hr>
+<pre>
+    Estado del Formulario: {{ segundo.valid }}
+    Status: {{ segundo.status }}
+</pre>
+
+<pre>
+    {{ segundo.value | json }}
+</pre>

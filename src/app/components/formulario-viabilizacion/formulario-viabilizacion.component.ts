@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, MinLengthValidator } from '@angular/forms';
 import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
 import { constantes } from 'src/constants/constantes';
 import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service';
+import { ContactoViable } from 'src/app/interfaces/contacto-viable';
+import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 
 @Component({
   selector: 'app-formulario-viabilizacion',
@@ -12,6 +14,7 @@ import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service'
 export class FormularioViabilizacionComponent implements OnInit {
 
   isLinear = false;
+  editable = true;
   primero: FormGroup;
   segundo: FormGroup;
 
@@ -21,35 +24,100 @@ export class FormularioViabilizacionComponent implements OnInit {
   cuotaInicial: number;
   porcentaje: number = 10;
   valorCuota: number;
+
+  cargando = false;
+  aprobado;
+
   resultadoCalculadora = {
-    valorCuota: 0
+  valorCuota: 0
+  };
+
+  contacto: ContactoViable = {
+    DatosBasicos: {
+      TipoDocumento: null,
+      NumeroDocumento: null,
+      Nombre: null,
+      Celular: null,
+      CorreoPersonal: null
+    },
+    DatosFinancieros: {
+      ActividadEconomica: null,
+      ActividadIndependiente: 3,
+      IngresoMensual: null
+    },
+    OtrosDatos: {
+      AutorizaConsultaCentrales: false,
+      AutorizaMareigua: false,
+      ValorFinanciar: null,
+      IdentificacionVendedor: null
+    }
   };
 
 
-  constructor( private formBuilder: FormBuilder, private apiMercadolibre: ApiMercadolibreService, private calculadoraServicio: ApiCalculadoraService ) {
+  constructor( private formBuilder: FormBuilder, private apiMercadolibre: ApiMercadolibreService, private calculadoraServicio: ApiCalculadoraService, private centralesRiesgo: CentralesRiesgoService ) {
     this.crearFormularios();
     this.obtenerInfoVehiculo();
    }
 
   ngOnInit() {
+    this.viabilizar();
   }
 
   crearFormularios() {
     this.primero = this.formBuilder.group({
       cuotaInicial: [0, [Validators.required, Validators.minLength(6)]],
-      cuotas: [48]
+      cuotas: [48, Validators.required]
     });
 
       this.primero.controls['cuotaInicial'].valueChanges.subscribe(value => {
       this.valorFinanciar = this.infoVehiculo.price;
       this.porcentaje = this.calculadoraServicio.calcularPorcentajeCuotaInicial(value, this.cuotaInicial);
       this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(this.primero.value.cuotas), this.valorFinanciar - value);
+      this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar - value;
     });
 
     this.segundo = this.formBuilder.group({
-      nombre: [''],
-      tipoIdentificacion:[]
+      Nombre: ['', [Validators.required, Validators.minLength(5)]],
+      TipoDocumento: [null, Validators.required],
+      NumeroDocumento: ['', [Validators.required, Validators.minLength(5)]],
+      Celular: ['', [Validators.required, Validators.pattern(this.const.patternCel), Validators.maxLength(10), Validators.minLength(10)]],
+      CorreoPersonal: ['', [Validators.required, Validators.pattern(this.const.patternMail), Validators.minLength(10)]],
+      ActividadEconomica: [null, Validators.required],
+      IngresoMensual: ['', [Validators.required, Validators.min(this.const.valorMinIngreso)]],
+      AutorizaConsultaCentrales: [false, Validators.required]
     });
+
+    this.segundo.controls['Nombre'].valueChanges.subscribe(value => this.contacto.DatosBasicos.Nombre = value);
+    this.segundo.controls['TipoDocumento'].valueChanges.subscribe(value => this.contacto.DatosBasicos.TipoDocumento = value);
+    this.segundo.controls['NumeroDocumento'].valueChanges.subscribe(value => this.contacto.DatosBasicos.NumeroDocumento = value);
+    this.segundo.controls['Celular'].valueChanges.subscribe(value => this.contacto.DatosBasicos.Celular = value);
+    this.segundo.controls['CorreoPersonal'].valueChanges.subscribe(value => this.contacto.DatosBasicos.CorreoPersonal = value);
+    this.segundo.controls['ActividadEconomica'].valueChanges.subscribe(value => this.contacto.DatosFinancieros.ActividadEconomica = value);
+    this.segundo.controls['IngresoMensual'].valueChanges.subscribe(value => this.contacto.DatosFinancieros.IngresoMensual = value);
+    this.segundo.controls['AutorizaConsultaCentrales'].valueChanges.subscribe(value => this.contacto.OtrosDatos.AutorizaConsultaCentrales = value);
+  }
+
+  get nombreNovalido() {
+    return this.segundo.get('Nombre').invalid && this.segundo.get('Nombre').touched;
+  }
+  get tipoIdNoValido() {
+    return this.segundo.get('TipoDocumento').invalid && this.segundo.get('TipoDocumento').touched;
+  }
+  get idNoValido() {
+    return this.segundo.get('NumeroDocumento').invalid && this.segundo.get('NumeroDocumento').touched;
+  }
+
+  get celularNoValido() {
+    return this.segundo.get('Celular').invalid && this.segundo.get('Celular').touched;
+  }
+  get correoNoValido() {
+    return this.segundo.get('CorreoPersonal').invalid && this.segundo.get('CorreoPersonal').touched;
+  }
+  get actividadEconomicaNoValido() {
+    return this.segundo.get('ActividadEconomica').invalid && this.segundo.get('ActividadEconomica').touched;
+  }
+  get ingresoMensualNoValido() {
+    return this.segundo.get('IngresoMensual').invalid && this.segundo.get('IngresoMensual').touched;
   }
 
   obtenerInfoVehiculo() {
@@ -60,12 +128,63 @@ export class FormularioViabilizacionComponent implements OnInit {
       this.cuotaInicial = this.calculadoraServicio.cuotaInicial(this.infoVehiculo.price);
       this.primero.controls.cuotaInicial.setValue(this.cuotaInicial);
       this.valorFinanciar -= this.cuotaInicial;
+      this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar;
     });
 
   }
 
   clickRadioCuota(value) {
     this.resultadoCalculadora.valorCuota = this.calculadoraServicio.calcularCuota(Number(value.path[3].innerText), this.valorFinanciar).valorCuota;
+  }
+
+  patternCoincide(event, value) {
+    const pattern =  new RegExp(value);
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  autenticar() {
+    this.centralesRiesgo.cargador = true;
+    this.centralesRiesgo.autenticando();
+  }
+
+  viabilizar() {
+  this.centralesRiesgo.observableAutenticar.subscribe((value: number) => {
+    
+    if (value === 1) {
+    this.editable = false;
+    if (this.contacto.DatosFinancieros.ActividadEconomica) {
+      if (this.contacto.DatosFinancieros.ActividadEconomica === 1) {
+          this.contacto.DatosFinancieros.ActividadEconomica = 1;
+          this.contacto.DatosFinancieros.ActividadIndependiente = 15;
+      }
+      if (this.contacto.DatosFinancieros.ActividadEconomica === 11) {
+          this.contacto.DatosFinancieros.ActividadEconomica = 1;
+          this.contacto.DatosFinancieros.ActividadIndependiente = 16;
+      }
+      if (this.contacto.DatosFinancieros.ActividadEconomica === 2) {
+          this.contacto.DatosFinancieros.ActividadEconomica = 2;
+          this.contacto.DatosFinancieros.ActividadIndependiente = 3;
+      }
+  }
+
+    this.centralesRiesgo.respuesta(this.contacto).subscribe((res: any) => {
+      if (res.IdResultado === 2 || res.IdResultado === 3) {
+          
+        this.centralesRiesgo.cargador = false;
+        this.aprobado = true;
+
+      } else {
+        
+        this.centralesRiesgo.cargador = false;
+        this.aprobado = false;
+      }
+    });
+  }
+
+  });
   }
 
 }

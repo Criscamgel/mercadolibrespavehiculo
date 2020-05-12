@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { constantes } from 'src/constants/constantes';
 
 @Component({
   selector: 'app-encabezado',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./encabezado.component.scss']
 })
 export class EncabezadoComponent implements OnInit {
+
+  const = constantes;
 
   constructor() { }
 

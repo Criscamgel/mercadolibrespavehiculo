@@ -1,8 +1,20 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
+.contenedor{
+    .titulo{
+        padding: 20px;
+    }
+}
+
 .contenido{
     background-color: $color-blanco;
+    border-top-left-radius: $radio-borde;
+    border-bottom-left-radius: $radio-borde;
+    img{
+        border-top-left-radius: $radio-borde;
+        border-top-right-radius: $radio-borde;
+    }
     .detallesTecnicos{
         display: grid;
         grid-template-columns: repeat(3, auto);

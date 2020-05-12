@@ -10,6 +10,29 @@
     font-family: Roboto;
   }
 
+  app-root{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    app-cargador, app-splash, .superContenedor{
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+  /* Linea Vertical */
+  .vl {
+    border-left: 1px solid $color-grisDos;
+    height: auto;
+  }
+
+  app-cargador{
+    z-index: 1;
+  }
+
+  app-splash{
+    z-index: 2;
+  }
+
 .titulo{
   font-size: 15px;
 }
@@ -93,6 +116,10 @@
 
 .center{
   text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 

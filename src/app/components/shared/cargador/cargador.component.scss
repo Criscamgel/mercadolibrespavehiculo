@@ -1,0 +1,14 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenedor{
+    background-color: $color-blanco-transparente;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    mat-spinner{
+        align-self: center !important;
+        justify-self: center;
+    }
+}

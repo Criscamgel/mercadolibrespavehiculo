@@ -15,6 +15,9 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { PrimeraPalabraPipe } from './pipes/primera-palabra.pipe';
+import { MatIconModule } from '@angular/material';
+import { CargadorComponent } from './components/shared/cargador/cargador.component';
+import { SplashComponent } from './components/shared/splash/splash.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -25,7 +28,9 @@ registerLocaleData(localeEs, 'es');
     FooterComponent,
     DetallesVehiculoComponent,
     FormularioViabilizacionComponent,
-    PrimeraPalabraPipe
+    PrimeraPalabraPipe,
+    CargadorComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,

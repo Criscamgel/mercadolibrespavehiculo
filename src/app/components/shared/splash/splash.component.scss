@@ -1,0 +1,20 @@
+@import '../../../../scss/variables';
+
+.contenedor{
+    background-color: $color-principal;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    .contenido{
+        align-self: center;
+        justify-self: center;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-gap: 10px;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
