@@ -9,6 +9,8 @@ export class ApiMercadolibreService {
 
   idVehiculo: string;
   infoVehiculo = [];
+  mostrarModalTyc = false;
+  errorApi = false;
 
   constructor(private http: HttpClient) { }
 
@@ -16,5 +18,9 @@ export class ApiMercadolibreService {
     const url = `${environment.urlApi}${idVehiculo}`;
     return this.http.get(url);
 }
+
+  volverNavegador() {
+    window.history.go(-1);
+  }
 
 }

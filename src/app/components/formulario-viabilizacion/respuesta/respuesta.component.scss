@@ -1,0 +1,30 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenido{
+    display: grid;
+    padding: 10%;
+    .respuesta{
+        align-self: center;
+        justify-self: center;
+        text-align: center;
+        img{
+            padding: 5%;
+        }
+        .mensaje{
+            color: $color-aprobado;
+            font-weight: 700;
+            padding: 10% 0 5% 0;
+        }
+        .mensajeNeg{
+            color: $color-alert;
+            font-weight: 700;
+            padding: 10% 0 5% 0;
+        }
+        .comentario{
+            font-size: 12px;
+            padding: 2.6% 0;
+        } 
+    }
+    
+}

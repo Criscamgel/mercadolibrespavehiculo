@@ -1,0 +1,27 @@
+<div class="contenedor">
+    <div class="contenido">
+        <div class="respuesta" *ngIf="formularioViable.aprobado" [@animationFadeOut]="formularioViable.aprobado">
+            <img [src]="const.aprobado" alt="aprobado">
+            <p class="mensaje">
+                Tu Solicitud es viable
+            </p>
+            <p class="comentario">
+                Podemos financiar el 100% de tu vehículo<br> un asesor se comunicará contigo de inmediato.
+            </p>
+        </div>
+
+        <div class="respuesta" *ngIf="formularioViable.negado" [@animationFadeOut]="formularioViable.negado">
+            <img [src]="const.aprobado" alt="negado">
+            <p class="mensajeNeg">
+                Negado
+            </p>
+            <p class="comentario">
+                Podemos financiar el 100% de tu vehículo<br> un asesor se comunicará contigo de inmediato.
+            </p>
+        </div>      
+
+    </div>
+    <div class="contBoton center">
+        <button mat-button (click)="apiMercadolibre.volverNavegador()">Volver a MercadoLibre</button>
+    </div>
+</div>

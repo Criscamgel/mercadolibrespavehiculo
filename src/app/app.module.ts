@@ -18,6 +18,9 @@ import { PrimeraPalabraPipe } from './pipes/primera-palabra.pipe';
 import { MatIconModule } from '@angular/material';
 import { CargadorComponent } from './components/shared/cargador/cargador.component';
 import { SplashComponent } from './components/shared/splash/splash.component';
+import { ModaltycComponent } from './components/shared/modaltyc/modaltyc.component';
+import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
+import { MensajeErrorComponent } from './components/shared/mensaje-error/mensaje-error.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -30,7 +33,10 @@ registerLocaleData(localeEs, 'es');
     FormularioViabilizacionComponent,
     PrimeraPalabraPipe,
     CargadorComponent,
-    SplashComponent
+    SplashComponent,
+    ModaltycComponent,
+    RespuestaComponent,
+    MensajeErrorComponent
   ],
   imports: [
     BrowserModule,

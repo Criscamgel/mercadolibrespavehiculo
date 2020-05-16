@@ -1,4 +1,6 @@
-<mat-horizontal-stepper [disableRipple]="true" *ngIf="infoVehiculo" [linear]="isLinear" #stepper>
+<div class="contenedor">
+<app-modaltyc *ngIf="apiMercadolibre.mostrarModalTyc" [@animationFadeOut]="apiMercadolibre.mostrarModalTyc"></app-modaltyc>
+<mat-horizontal-stepper [disableRipple]="true" *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota" [linear]="isLinear" #stepper>
 
     <mat-step [stepControl]="primero" [editable]="editable">
       <form [formGroup]="primero">
@@ -26,30 +28,31 @@
         <div class="contCampoDos">
             <div>
                 <p class="tituloCampo">Valor total a financiar</p>
-                <p class="cifra">$ {{ resultadoCalculadora.valorTotalFinanciar | number:'1.0':'es'}}</p>
+                <p class="cifra">$ {{ resultadoCalculadora.resultadoCuota[0].valorTotalFinanciar | number:'1.0':'es'}}</p>
             </div>
             <div>
                 <p class="tituloCampo">Tasa Aproximada</p>
-                <p class="cifra">{{ const.tasa * 100 | number:'1.0-1':'es'}} %</p>
+                <p class="cifra">Desde {{ resultadoCalculadora.resultadoCuota[0].nmv * 100 | number:'1.0-2':'es'}}% NMV</p>
                 <p class="menuda">Sujeto a perfil de cliente*</p>
             </div>
         </div>
 
         <div class="contCampoUno">
-            <p class="tituloCampo">Selecciona el número de cuotas</p>
-        </div>
+            <p id="cuotas" class="tituloCampo cuotas">Selecciona el número de cuotas</p>        
 
         <mat-radio-group formControlName="cuotas">
             <mat-radio-button
-            *ngFor="let cuota of const.cuotas" 
-            [value]="cuota"
+            *ngFor="let cuota of resultadoCalculadora.resultadoCuota" 
+            [value]="cuota.cuota"
             (click)="clickRadioCuota($event)"
-            >{{cuota}}</mat-radio-button>
+            ><p>{{cuota.cuota}} pagos mensuales de $ {{ cuota.valorCuota | number:'1.0':'es'}}</p></mat-radio-button>
         </mat-radio-group>
 
-        <div class="contResultado center">
-            <b>{{primero.value.cuotas}}</b> pagos mensuales de <b>$ {{ resultadoCalculadora.valorCuota | number:'1.0':'es'}}</b>
-        </div>
+      </div>
+
+        <!-- <div class="contResultado center">
+            <b>{{primero.value.cuotas}}</b> pagos mensuales de <b>$ {{ resultadoCalculadora[0].valorCuota | number:'1.0':'es'}}</b>
+        </div> -->
 
         <div class="contBoton center">
           <button mat-button matStepperNext>Financiar mi {{ infoVehiculo.title | primeraPalabra }}</button>
@@ -75,9 +78,9 @@
           <mat-error *ngIf="nombreNovalido">Necesitamos saber tu nombre, diligencia tu nombre completo</mat-error>
         </mat-form-field>
 
-        <div class="contCampoDos">            
+        <div id="segundo" class="contCampoDos">            
             
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field id="dobleInput" class="full-width" appearance="outline">
                 <mat-label>Tipo de Identificación</mat-label>
                 <select 
                     matNativeControl
@@ -91,10 +94,10 @@
                     >
                     {{obj.name}}</option>
                 </select>
-                <mat-error *ngIf="tipoIdNoValido">Necesitamos saber tu tipo de identificación</mat-error>
+                <mat-error *ngIf="tipoIdNoValido">Elige una opción</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field id="dobleInput" appearance="outline" class="full-width">
                 <mat-label>Nro. de identificación</mat-label>
                 <input 
                 matInput
@@ -103,7 +106,7 @@
                 (keypress)="patternCoincide($event, const.patternNumber)"
                 required
                 >
-                <mat-error *ngIf="idNoValido">Necesitamos saber tu tipo de identificación, diligencia una identificación válida</mat-error>
+                <mat-error *ngIf="idNoValido">Diligencia este campo</mat-error>
             </mat-form-field>           
 
         </div>
@@ -162,7 +165,7 @@
             <mat-error *ngIf="ingresoMensualNoValido">Necesitamos saber tus ingresos mensuales</mat-error>
           </mat-form-field>
 
-          <div class="contCampoUno center">
+          <div id="check" class="contCampoUno center">
 
           <mat-checkbox 
             required
@@ -170,18 +173,20 @@
             value=""
             formControlName="AutorizaConsultaCentrales"
             ></mat-checkbox>
-            Acepto los <strong class="pointer" (click)="modalTyc=true">términos y condiciones</strong>
+            Acepto los <strong class="pointer" (click)="apiMercadolibre.mostrarModalTyc=true">términos y condiciones</strong>
 
           </div>
 
         <div>
-          <button 
+          <div class="contBoton center">
+          <button
           mat-button
           matStepperNext
           (click)="autenticar()"
           [disabled] = "segundo.invalid"
           >Comprobar mis datos</button>
         </div>
+      </div>
       </form>
     </mat-step>
 
@@ -189,14 +194,11 @@
 
     <mat-step [editable]="editable">
       <ng-template matStepLabel>Respuesta inmediata</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperPrevious (click)="organizarInfo()">Reset</button>
-      </div>
+      <app-respuesta></app-respuesta>
     </mat-step>
 </mat-horizontal-stepper>
-
+</div>
+<!-- 
 <hr>
 <pre>
     Estado del Formulario: {{ segundo.valid }}
@@ -205,4 +207,4 @@
 
 <pre>
     {{ segundo.value | json }}
-</pre>
+</pre> -->

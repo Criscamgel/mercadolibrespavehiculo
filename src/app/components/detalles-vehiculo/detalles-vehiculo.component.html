@@ -9,10 +9,10 @@
         </p>
     </div>
 
-    <div class="contenido titulo">
+    <div class="contenido">
         <img [src]="infoVehiculo.pictures[0].url" alt="">
         <div class="detallesTecnicos">
-            <div *ngFor="let item of informacion">
+            <div class="itemInfo" *ngFor="let item of informacion">
                 <b>{{item.nombre}}:</b> {{item.valor}}</div>
             </div>        
         <app-footer></app-footer>

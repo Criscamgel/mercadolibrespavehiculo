@@ -3,21 +3,38 @@
 
 .contenedor{
     .titulo{
-        padding: 20px;
+        padding: 27px;
     }
 }
 
 .contenido{
+    font-size: 12px;
     background-color: $color-blanco;
     border-top-left-radius: $radio-borde;
     border-bottom-left-radius: $radio-borde;
+    display: grid;
+    grid-template-columns: 9% auto 9%;
+    box-shadow: -1px 1px 5px 0px #e0e0e0;
     img{
         border-top-left-radius: $radio-borde;
         border-top-right-radius: $radio-borde;
+        margin: 7% 0 0 0;
     }
     .detallesTecnicos{
         display: grid;
         grid-template-columns: repeat(3, auto);
         grid-template-rows: repeat(2, auto);
+        background-color: $color-grisTres;
+        row-gap: 3px;
+        padding: 10px 0px 10px 20px;
+        border-bottom-left-radius: $radio-borde;
+        border-bottom-right-radius: $radio-borde;
     }
+    app-footer{
+        margin: 10% 0 7% 0;
+    }
+}
+
+img, .detallesTecnicos, app-footer{
+    grid-column: 2;
 }

@@ -1,0 +1,36 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenedor{
+    box-shadow: -1px 1px 5px 0px #e0e0e0;
+    border-radius: 10px;
+    height: 70vh;
+    background-color: $color-blanco;
+    .contenido{
+        display: grid;
+        grid-template-columns: auto 60%;
+        height: 100%;
+        
+        .mensaje{
+            margin-top: 10%;
+            padding: 0 10%;
+            .msjError{
+                color: $color-secundario;
+                font-size: 40px;
+                font-weight: 700;
+            }
+            .detalles{
+                color: $color-grisDos;
+                font-size: 12px;
+            }
+        }
+        .imagen{
+            align-self: center;
+            justify-self: center;
+            text-align: center;
+            img{
+                width: 80%;
+            }
+        }
+    }
+}

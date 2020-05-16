@@ -27,6 +27,8 @@ export class DetallesVehiculoComponent  {
         this.informacion.push(propiedad);
         });
       this.apiMercadolibre.infoVehiculo = this.infoVehiculo;
+    }, ( error ) => {
+        this.apiMercadolibre.errorApi = true;
     });
   }
 

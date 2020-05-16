@@ -1,22 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, MinLengthValidator } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
 import { constantes } from 'src/constants/constantes';
 import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service';
 import { ContactoViable } from 'src/app/interfaces/contacto-viable';
 import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-formulario-viabilizacion',
   templateUrl: './formulario-viabilizacion.component.html',
-  styleUrls: ['./formulario-viabilizacion.component.scss']
+  styleUrls: ['./formulario-viabilizacion.component.scss'],
+  animations: [
+    trigger('animationFadeOut', [
+      transition(':enter', [
+        style({ opacity: '1' }),
+        animate(300)
+      ]),
+      transition(':leave', [
+        animate(300, style({ opacity: '0' }))
+      ]),
+      state('*', style({ opacity: '1' })),
+    ])
+  ]
 })
+
 export class FormularioViabilizacionComponent implements OnInit {
 
   isLinear = false;
   editable = true;
   primero: FormGroup;
   segundo: FormGroup;
+  idResultado: number;
 
   infoVehiculo: any;
   const = constantes;
@@ -25,12 +40,12 @@ export class FormularioViabilizacionComponent implements OnInit {
   porcentaje: number = 10;
   valorCuota: number;
 
-  cargando = false;
-  aprobado;
+  cargando: boolean = false;
+  aprobado: boolean = false;
+  negado: boolean = false;
+  errorApi: boolean = false;
 
-  resultadoCalculadora = {
-  valorCuota: 0
-  };
+  resultadoCalculadora = {};
 
   contacto: ContactoViable = {
     DatosBasicos: {
@@ -72,7 +87,8 @@ export class FormularioViabilizacionComponent implements OnInit {
       this.primero.controls['cuotaInicial'].valueChanges.subscribe(value => {
       this.valorFinanciar = this.infoVehiculo.price;
       this.porcentaje = this.calculadoraServicio.calcularPorcentajeCuotaInicial(value, this.cuotaInicial);
-      this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(this.primero.value.cuotas), this.valorFinanciar - value);
+      this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(this.const.cuotas, this.valorFinanciar - value, this.porcentaje);
+      /* this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(this.primero.value.cuotas), this.valorFinanciar - value); */
       this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar - value;
     });
 
@@ -134,7 +150,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   clickRadioCuota(value) {
-    this.resultadoCalculadora.valorCuota = this.calculadoraServicio.calcularCuota(Number(value.path[3].innerText), this.valorFinanciar).valorCuota;
+    /* this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(value.path[3].innerText), this.valorFinanciar); */
   }
 
   patternCoincide(event, value) {
@@ -171,15 +187,20 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
     this.centralesRiesgo.respuesta(this.contacto).subscribe((res: any) => {
+      this.idResultado = res.IdResultado;
       if (res.IdResultado === 2 || res.IdResultado === 3) {
           
         this.centralesRiesgo.cargador = false;
         this.aprobado = true;
 
       } else {
-        
+        if ( res.IdResultado !== -1 ) {
         this.centralesRiesgo.cargador = false;
-        this.aprobado = false;
+        this.negado = true;
+        } else {
+          this.centralesRiesgo.cargador = false;
+          this.errorApi = true;
+        }
       }
     });
   }

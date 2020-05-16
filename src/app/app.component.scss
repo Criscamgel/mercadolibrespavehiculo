@@ -4,8 +4,19 @@
 .superContenedor{
     background-color: $color-grisUno;
     .contenedor{
-        padding-left: 5%;
-        padding-right: 5%;
-        padding-bottom: 5%;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        padding: 0 5% 5% 5%;
+
+        app-mensaje-error{            
+            z-index: 1;
+            margin-top: 5%;
+        }
+
+        app-mensaje-error , app-viabiliza-vehiculo{
+            grid-row: 1;
+            grid-column: 1;
+        }
     }
 }

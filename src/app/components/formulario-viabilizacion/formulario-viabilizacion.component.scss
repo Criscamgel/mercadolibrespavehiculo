@@ -1,18 +1,38 @@
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
 
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    app-modaltyc, mat-horizontal-stepper{
+        grid-row: 1;
+        grid-column: 1;
+    }
+    app-modaltyc{
+        z-index: 1;
+    }
+}
+
 .contCampoDos{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.5%;
+}
+
+.contCampoUno{
+    .tituloCampo#cuotas{
+        padding: 0 0 5% 0;
+    }
+}
+
+.contCampoUno#check{
+    font-size: 12px;
 }
 
 .tituloCampo{
     font-size: 15px;
     color: $color-grisDos;
-}
-
-.contBoton{
-    background-color: $color-grisUno;
 }
 
 .cifra{
@@ -23,4 +43,29 @@
 .menuda {
     font-size: 10px;
     color: $color-grisDos;
+}
+
+form{
+    padding: 12.5% 15% 0 10%;
+}
+
+.contCampoUno, .contCampoDos{
+    margin: 0 0 4% 0;
+}
+
+.contCampoDos#segundo{
+    margin: 0;
+}
+
+mat-radio-group {
+    display: grid !important;
+    mat-radio-button {
+        border: 1px solid $color-borde-inputs !important;
+        border-radius: 8px !important;
+        padding: 2% !important;
+    }
+}
+
+.mat-radio-checked p {
+    font-weight: 700;
 }

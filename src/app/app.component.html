@@ -3,7 +3,9 @@
 <div class="superContenedor">
     <app-encabezado></app-encabezado>
     <div class="contenedor">
-        <app-viabiliza-vehiculo></app-viabiliza-vehiculo>
+        <!-- errorApi -->
+        <app-viabiliza-vehiculo *ngIf="!apiMercadolibre.errorApi" [@animationFadeOut]="!apiMercadolibre.errorApi"></app-viabiliza-vehiculo>
+        <app-mensaje-error *ngIf="apiMercadolibre.errorApi" [@animationFadeOut]="apiMercadolibre.errorApi"></app-mensaje-error>
     </div>
     
 </div>

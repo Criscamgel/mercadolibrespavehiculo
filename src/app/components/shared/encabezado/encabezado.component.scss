@@ -3,7 +3,7 @@
 
 .contenido{
     display: grid;
-    grid-template-columns: $general-margen 1fr $general-margen;
+    grid-template-columns: 7% auto 7%;
     background-color: $color-principal;
     height: 10vh;
     img{

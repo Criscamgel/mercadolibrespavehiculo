@@ -1,0 +1,18 @@
+<div class="contenedor">
+    <div class="contenido">
+        <div class="mensaje">
+            <div class="msjError">Error 404</div><br>
+            No eres tú <strong>somos nosotros</strong><br><br>
+            <div class="detalles">
+                Un error ha ocurrido.<br>
+                Verifica la URL en el navegador
+            </div>
+            <div class="contBoton center">
+                <button mat-button (click)="apiMercadolibre.volverNavegador()">VOLVER A MERCADOLIBRE</button>
+            </div>
+        </div>
+        <div class="imagen">
+            <img [src]="const.errorApi" alt="Error API">
+        </div>
+    </div>
+</div>
