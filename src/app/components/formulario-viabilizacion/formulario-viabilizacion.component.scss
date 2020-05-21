@@ -18,6 +18,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1.5%;
+    @include Asmall(){
+        grid-template-columns: auto;
+    }
 }
 
 .contCampoUno{
@@ -46,7 +49,10 @@
 }
 
 form{
-    padding: 12.5% 15% 0 10%;
+    padding: 4% 10% 0 10%;
+    @include Asmall(){
+        padding: 2% 4%;
+    }
 }
 
 .contCampoUno, .contCampoDos{
@@ -68,4 +74,8 @@ mat-radio-group {
 
 .mat-radio-checked p {
     font-weight: 700;
+}
+
+form.segundo{
+    padding: 10% 10% 8% 10%;
 }

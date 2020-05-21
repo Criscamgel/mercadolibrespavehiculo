@@ -21,6 +21,9 @@ import { SplashComponent } from './components/shared/splash/splash.component';
 import { ModaltycComponent } from './components/shared/modaltyc/modaltyc.component';
 import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
 import { MensajeErrorComponent } from './components/shared/mensaje-error/mensaje-error.component';
+import { SpeedometerComponent } from './components/formulario-viabilizacion/speedometer/speedometer.component';
+import { GaugeChartModule } from 'angular-gauge-chart';
+
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -36,7 +39,8 @@ registerLocaleData(localeEs, 'es');
     SplashComponent,
     ModaltycComponent,
     RespuestaComponent,
-    MensajeErrorComponent
+    MensajeErrorComponent,
+    SpeedometerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    GaugeChartModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]

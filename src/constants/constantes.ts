@@ -3,6 +3,7 @@ export const constantes = {
     REGEX_ID: '\/MCO-(.*?)(-|$)',
     idInformacion: ['Marca', 'Modelo', 'Versión', 'Año', 'Cilindrada', 'Kilómetros'],
     cuotas: [48, 60, 72, 84],
+    nombreCuotas: ['cuatroOcho', 'seisCero', 'sieteDos', 'ochoCuatro'],
     tasa: 0.0115,
     tipoDocumento: [
         {value: null, name: 'Tipo de identificación'},
@@ -34,6 +35,7 @@ export const constantes = {
     aprobado: './assets/aprobado.png',
     negado: './assets/aprobado.png',
     errorApi: './assets/404.png',
+    aguja: './assets/gauge.svg',
     /* TYC */
     tyc: {
      titulo: "TERMINOS Y CONDICIONES PORTAL Mercadolibre - Tu carro",

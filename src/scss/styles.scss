@@ -47,6 +47,11 @@
   grid-template-columns: repeat(3, auto) !important;
   grid-template-rows: 1fr !important;
   padding: 15px 80px 0 80px;
+  @include Asmall(){
+    padding: 0px;
+    /* padding: 0px 12%; */
+    width: 80%;
+  }
 }
 
 .mat-step-icon .mat-icon, .mat-step-icon-content{
@@ -169,6 +174,9 @@
   color: $color-blanco !important;
   border-radius: 20px !important;
   padding: 1% 100px !important;
+  @include Asmall(){
+    padding: 1% 15% !important;
+  }
 }
 
 span.mat-button-wrapper{
@@ -191,10 +199,25 @@ span.mat-button-wrapper{
   margin: 0.1% 0 !important;
 }
 
+.mat-radio-label{
+  display: grid !important;
+  grid-template-rows: repeat(2, auto) !important;
+  .mat-radio-container, .mat-radio-label-content{
+    align-self: center !important;
+    justify-self: center !important;
+  }    
+}
+
 /* Color Check */
 
 .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background{
   background: $color-checked !important;
+}
+
+/* Speedometer */
+
+.gauge-chart div svg {
+  height: 230px;
 }
 
 

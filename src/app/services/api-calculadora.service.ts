@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { constantes } from 'src/constants/constantes';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCalculadoraService {
 
+  public observablResultadoCalculadora: any;
+
   resultadoCalculadora = {
     resultadoCuota: []
   };
 
-  constructor() { }
+  constructor() {
+    this.observablResultadoCalculadora = new BehaviorSubject<any>(this.resultadoCalculadora);
+   }
 
   cuotaInicial(valor: number) {
     return valor * 0.1;
@@ -39,6 +44,7 @@ export class ApiCalculadoraService {
       /* Igualando */
       const resultado = {
         cuota,
+        nombre: constantes.nombreCuotas[index],
         nmv,
         valorCuota,
         valorFinalSeguroTotal: seguroTotalCuota * cuota,
@@ -52,6 +58,7 @@ export class ApiCalculadoraService {
     });
 
     console.log(this.resultadoCalculadora);
+    this.observablResultadoCalculadora.next(this.resultadoCalculadora);
     return this.resultadoCalculadora;
   }
 

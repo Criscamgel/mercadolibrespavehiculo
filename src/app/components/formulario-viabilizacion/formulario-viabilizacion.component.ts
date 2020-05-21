@@ -32,6 +32,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   primero: FormGroup;
   segundo: FormGroup;
   idResultado: number;
+  pago: number;
 
   infoVehiculo: any;
   const = constantes;
@@ -149,8 +150,10 @@ export class FormularioViabilizacionComponent implements OnInit {
 
   }
 
-  clickRadioCuota(value) {
+  clickRadioCuota() {
     /* this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(value.path[3].innerText), this.valorFinanciar); */
+    console.log(this.primero.value.cuotas);
+    this.pago = this.primero.value.cuotas;
   }
 
   patternCoincide(event, value) {

@@ -15,10 +15,21 @@
     display: grid;
     grid-template-columns: 9% auto 9%;
     box-shadow: -1px 1px 5px 0px #e0e0e0;
+    padding: 4% 0;
+    @include Asmall(){
+        grid-template-columns: auto;
+        box-shadow: -1px 1px 5px 0px none;
+    }
     img{
         border-top-left-radius: $radio-borde;
         border-top-right-radius: $radio-borde;
         margin: 7% 0 0 0;
+        @include Asmall(){
+            width: 100%;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            margin: 0px;
+        }
     }
     .detallesTecnicos{
         display: grid;
@@ -29,9 +40,15 @@
         padding: 10px 0px 10px 20px;
         border-bottom-left-radius: $radio-borde;
         border-bottom-right-radius: $radio-borde;
+        @include Asmall(){
+            display: none;
+        }
     }
     app-footer{
         margin: 10% 0 7% 0;
+        @include Asmall(){
+            display: none;
+        }
     }
 }
 

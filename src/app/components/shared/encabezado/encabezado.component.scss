@@ -6,6 +6,10 @@
     grid-template-columns: 7% auto 7%;
     background-color: $color-principal;
     height: 10vh;
+    @include Asmall(){
+        grid-template-columns: auto;
+        grid-template-columns: 1% auto 1%; 
+    }
     img{
         grid-column: 2;
         /* alineación vertical */

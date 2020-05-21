@@ -1,6 +1,6 @@
 <div class="contenedor">
 <app-modaltyc *ngIf="apiMercadolibre.mostrarModalTyc" [@animationFadeOut]="apiMercadolibre.mostrarModalTyc"></app-modaltyc>
-<mat-horizontal-stepper [disableRipple]="true" *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota" [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [disableRipple]="true" [linear]="isLinear" *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota" #stepper>
 
     <mat-step [stepControl]="primero" [editable]="editable">
       <form [formGroup]="primero">
@@ -37,22 +37,26 @@
             </div>
         </div>
 
-        <div class="contCampoUno">
+        <!-- <div class="contCampoUno">
             <p id="cuotas" class="tituloCampo cuotas">Selecciona el número de cuotas</p>        
 
         <mat-radio-group formControlName="cuotas">
             <mat-radio-button
             *ngFor="let cuota of resultadoCalculadora.resultadoCuota" 
             [value]="cuota.cuota"
-            (click)="clickRadioCuota($event)"
+            (click)="clickRadioCuota()"
             ><p>{{cuota.cuota}} pagos mensuales de $ {{ cuota.valorCuota | number:'1.0':'es'}}</p></mat-radio-button>
         </mat-radio-group>
 
-      </div>
+      </div> -->
 
         <!-- <div class="contResultado center">
             <b>{{primero.value.cuotas}}</b> pagos mensuales de <b>$ {{ resultadoCalculadora[0].valorCuota | number:'1.0':'es'}}</b>
         </div> -->
+        <div class="contCampoUno">
+            <p id="cuotas" class="tituloCampo cuotas">Selecciona el número de cuotas</p>
+            <app-speedometer></app-speedometer>
+        </div>
 
         <div class="contBoton center">
           <button mat-button matStepperNext>Financiar mi {{ infoVehiculo.title | primeraPalabra }}</button>
@@ -63,7 +67,7 @@
     <!-- Segundo Formulario -->
 
     <mat-step [stepControl]="segundo" [editable]="editable">
-      <form [formGroup]="segundo">
+      <form [formGroup]="segundo" class="segundo">
         <ng-template matStepLabel>Ingresa tus datos</ng-template>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -175,7 +179,7 @@
             ></mat-checkbox>
             Acepto los <strong class="pointer" (click)="apiMercadolibre.mostrarModalTyc=true">términos y condiciones</strong>
 
-          </div>
+          </div>          
 
         <div>
           <div class="contBoton center">
@@ -192,7 +196,7 @@
 
     <!-- Tercer Paso -->
 
-    <mat-step [editable]="editable">
+    <mat-step [editable]="!editable">
       <ng-template matStepLabel>Respuesta inmediata</ng-template>
       <app-respuesta></app-respuesta>
     </mat-step>
