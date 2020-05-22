@@ -27,7 +27,7 @@ export class AppComponent {
   activarVistaError = false;
   splash: boolean;
 
-  constructor(private apiMercadolibre: ApiMercadolibreService, private centralesRiesgo: CentralesRiesgoService) {
+  constructor(public apiMercadolibre: ApiMercadolibreService, public centralesRiesgo: CentralesRiesgoService) {
     this.animasplash();
     this.centralesRiesgo.cargador = true;
     this.obtenerIdVehiculo(this.urlVehiculo);
