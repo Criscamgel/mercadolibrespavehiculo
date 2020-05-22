@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     transition: all 0.5s;
-    font-family: Roboto;
+    font-family: Open Sans;
   }
 
   app-root{
@@ -46,7 +46,7 @@
   display: grid !important;
   grid-template-columns: repeat(3, auto) !important;
   grid-template-rows: 1fr !important;
-  padding: 15px 80px 0 80px;
+  padding: 20px 80px 0 80px;
   @include Asmall(){
     padding: 0px 5%;
     margin: 0 auto;
@@ -220,6 +220,12 @@ span.mat-button-wrapper{
     align-self: center !important;
     justify-self: center !important;
   }    
+}
+
+.mat-step-label{
+  grid-row: 1 !important;
+    font-size: 11px !important;
+    color: black !important;
 }
 
 /* Color Check */

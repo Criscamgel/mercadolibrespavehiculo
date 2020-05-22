@@ -1,8 +1,8 @@
 <div class="contenedor">
 <app-modaltyc *ngIf="apiMercadolibre.mostrarModalTyc" [@animationFadeOut]="apiMercadolibre.mostrarModalTyc"></app-modaltyc>
-<mat-horizontal-stepper [disableRipple]="true" [linear]="isLinear" *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota" #stepper>
+<mat-horizontal-stepper [disableRipple]="true" linear="true" *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota" #stepper>
 
-    <mat-step [stepControl]="primero" [editable]="editable">
+    <mat-step [stepControl]="primero" [editable]="editable" completed>
       <div class="noDesk">
         <div class="tituloPaso">Calcula tu cuota</div>
         <hr>
@@ -56,7 +56,7 @@
 
     <!-- Segundo Formulario -->
 
-    <mat-step [stepControl]="segundo" [editable]="editable">
+    <mat-step [stepControl]="segundo" [editable]="editable" completed>
       <div class="noDesk">
         <div class="tituloPaso">Ingresa tus datos</div>
         <hr>
@@ -194,7 +194,7 @@
 
     <!-- Tercer Paso -->
 
-    <mat-step [editable]="!editable">
+    <mat-step [editable]="false" [completed]="isCompleted">
       <ng-template matStepLabel>Respuesta inmediata</ng-template>
       <app-respuesta></app-respuesta>
     </mat-step>
