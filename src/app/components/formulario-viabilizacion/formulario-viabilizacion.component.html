@@ -20,7 +20,9 @@
         <mat-label>Cuota inicial (Porcentaje {{porcentaje | number:'1.0-1':'es'}}%)</mat-label>
         <mat-form-field appearance="outline" class="full-width">
           <input 
+          class="ctaInicial"
           matInput
+          type="cel"
           currencyMask 
           placeholder="Cuota inicial"
           [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }" 
@@ -97,6 +99,7 @@
                 <mat-label>Nro. de identificación</mat-label>
                 <input 
                 matInput
+                type="tel"
                 formControlName="NumeroDocumento" 
                 placeholder="Nro. de identificación*"
                 (keypress)="patternCoincide($event, const.patternNumber)"
@@ -110,7 +113,9 @@
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Número de celular</mat-label>
             <input 
-            matInput 
+            matInput
+            type="tel"
+            maxlength="10" 
             formControlName="Celular"
             placeholder="Número de celular*"
             (keypress)="patternCoincide($event, const.patternNumber)"
@@ -151,6 +156,7 @@
             <mat-label>¿Cuáles son tus ingresos mensuales?</mat-label>
             <input 
             matInput
+            type="tel"
             currencyMask 
             placeholder="¿Cuáles son tus ingresos mensuales?*"
             [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }" 
