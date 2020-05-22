@@ -161,8 +161,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   clickRadioCuota() {
-    /* this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(value.path[3].innerText), this.valorFinanciar); */
-    console.log(this.primero.value.cuotas);
     this.pago = this.primero.value.cuotas;
   }
 
@@ -175,7 +173,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   autenticar() {
-    console.log("Autenticar");
     this.centralesRiesgo.cargador = true;
     if (this.desaparecerDetallesMobile) {
       this.apiMercadolibre.desaparecerDetallesMobile = true;

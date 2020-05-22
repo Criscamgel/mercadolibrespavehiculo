@@ -57,7 +57,7 @@ export class ApiCalculadoraService {
       }
     });
 
-    console.log(this.resultadoCalculadora);
+    /* console.log(this.resultadoCalculadora); */
     this.observablResultadoCalculadora.next(this.resultadoCalculadora);
     return this.resultadoCalculadora;
   }
