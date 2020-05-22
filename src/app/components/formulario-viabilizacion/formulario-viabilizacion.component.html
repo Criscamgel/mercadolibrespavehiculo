@@ -3,6 +3,10 @@
 <mat-horizontal-stepper [disableRipple]="true" [linear]="isLinear" *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota" #stepper>
 
     <mat-step [stepControl]="primero" [editable]="editable">
+      <div class="noDesk">
+        <div class="tituloPaso">Calcula tu cuota</div>
+        <hr>
+      </div>
       <form [formGroup]="primero">
         <ng-template matStepLabel>Calcula tu cuota</ng-template>
 
@@ -36,23 +40,7 @@
                 <p class="menuda">Sujeto a perfil de cliente*</p>
             </div>
         </div>
-
-        <!-- <div class="contCampoUno">
-            <p id="cuotas" class="tituloCampo cuotas">Selecciona el número de cuotas</p>        
-
-        <mat-radio-group formControlName="cuotas">
-            <mat-radio-button
-            *ngFor="let cuota of resultadoCalculadora.resultadoCuota" 
-            [value]="cuota.cuota"
-            (click)="clickRadioCuota()"
-            ><p>{{cuota.cuota}} pagos mensuales de $ {{ cuota.valorCuota | number:'1.0':'es'}}</p></mat-radio-button>
-        </mat-radio-group>
-
-      </div> -->
-
-        <!-- <div class="contResultado center">
-            <b>{{primero.value.cuotas}}</b> pagos mensuales de <b>$ {{ resultadoCalculadora[0].valorCuota | number:'1.0':'es'}}</b>
-        </div> -->
+        
         <div class="contCampoUno">
             <p id="cuotas" class="tituloCampo cuotas">Selecciona el número de cuotas</p>
             <app-speedometer></app-speedometer>
@@ -67,6 +55,10 @@
     <!-- Segundo Formulario -->
 
     <mat-step [stepControl]="segundo" [editable]="editable">
+      <div class="noDesk">
+        <div class="tituloPaso">Ingresa tus datos</div>
+        <hr>
+      </div>
       <form [formGroup]="segundo" class="segundo">
         <ng-template matStepLabel>Ingresa tus datos</ng-template>
 

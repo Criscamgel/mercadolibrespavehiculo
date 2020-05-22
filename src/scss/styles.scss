@@ -30,7 +30,7 @@
   }
 
   app-splash{
-    z-index: 2;
+    z-index: 5;
   }
 
 .titulo{
@@ -48,9 +48,8 @@
   grid-template-rows: 1fr !important;
   padding: 15px 80px 0 80px;
   @include Asmall(){
-    padding: 0px;
-    /* padding: 0px 12%; */
-    width: 80%;
+    padding: 0px 5%;
+    margin: 0 auto;
   }
 }
 
@@ -93,6 +92,9 @@
   border: 1px solid !important;
   grid-row: 1 !important;
   margin: 0 -70px !important;
+  @include Asmall(){
+    margin: 0 -50px !important;
+  }
 }
 
 .mat-stepper-horizontal{
@@ -130,6 +132,9 @@
 .mat-form-field-appearance-outline .mat-form-field-infix{
   padding: 2% 0 2% 0 !important;
   font-size: 15.2px !important;
+  @include Asmall(){
+    padding: 4% 0 4% 0 !important;
+  }
 }
 
 /*  */
@@ -145,7 +150,11 @@
 .mat-horizontal-content-container{
   border-top-right-radius: $radio-borde !important; 
   border-bottom-right-radius: $radio-borde !important;
-  box-shadow: 3px 1px 5px 0px #e0e0e0; 
+  box-shadow: 3px 1px 5px 0px #e0e0e0;
+  @include Asmall(){
+    border-radius: 10px !important;
+    margin: 4% !important;
+  } 
 }
 
 /* Radio Button Checked */
@@ -217,7 +226,38 @@ span.mat-button-wrapper{
 /* Speedometer */
 
 .gauge-chart div svg {
-  height: 230px;
+  height: 190px;
+  @include Asmall(){
+    height: 135px;
+  }
+}
+
+.gauge-chart div {
+  z-index: 1;
+}
+
+.noMobile{
+  @include Asmall(){
+    display: none;
+  }
+
+  @include smallTablet(){
+    display: none;
+  }
+}
+
+.noDesk{
+  @include tabletLaptop(){
+    display: none;
+  }
+  
+  @include laptopDesktop(){
+    display: none;
+  }
+
+  @include desktopFull(){
+    display: none;
+  }
 }
 
 

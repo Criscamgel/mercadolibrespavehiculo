@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
+import { constantes } from 'src/constants/constantes';
 
 @Component({
   selector: 'app-viabiliza-vehiculo',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViabilizaVehiculoComponent implements OnInit {
 
-  constructor() { }
+  const = constantes;
+
+  constructor( private apiMercadolibre: ApiMercadolibreService ) { }
 
   ngOnInit() {
   }

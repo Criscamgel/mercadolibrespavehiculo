@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service';
 import { FormControl } from '@angular/forms';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { constantes } from 'src/constants/constantes';
 
 @Component({
   selector: 'app-speedometer',
@@ -9,27 +11,38 @@ import { FormControl } from '@angular/forms';
 })
 export class SpeedometerComponent  {
 
-    canvasWidth = 500;
-    canvasHeight = 400;
+    canvasWidth = 400;
+    canvasHeight = 100;
     needleValue = 15;
     centralLabel = '';
+    const = constantes;
     options = {
     hasNeedle: true,
     needleColor: '#bd1414',
     needleUpdateSpeed: 500,
-    arcColors: ['#378FFD', 'orange', 'gray'],
-    arcDelimiters: [25, 50, 75]
+    arcColors: ['transparent']
 };
 
     periodo = new FormControl(48);
     informacionPagar: any;
 
-  constructor(private calculadoraServicio: ApiCalculadoraService) {
+  constructor(private calculadoraServicio: ApiCalculadoraService, public breakpointObserver: BreakpointObserver) {
 
     this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[0];
     this.periodo.valueChanges.subscribe(value => this.cambioVelocimetro(value));
     this.cambioResultadoCalculadora();
-  }
+
+    breakpointObserver.observe([
+      '(max-width: 576px)'
+        ]).subscribe(result => {
+          if (result.matches) {
+            this.canvasWidth = 270;
+            this.canvasHeight = 200;
+          }
+        });
+
+    }
+    
 
   cambioVelocimetro(value) {
 

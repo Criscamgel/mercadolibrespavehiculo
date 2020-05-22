@@ -18,7 +18,9 @@
     padding: 4% 0;
     @include Asmall(){
         grid-template-columns: auto;
-        box-shadow: -1px 1px 5px 0px none;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0 0 4% 0;
     }
     img{
         border-top-left-radius: $radio-borde;
@@ -54,4 +56,10 @@
 
 img, .detallesTecnicos, app-footer{
     grid-column: 2;
+}
+
+.titulo{
+    @include Asmall(){
+        background-image: linear-gradient(172deg, $color-blanco, transparent);
+    }
 }

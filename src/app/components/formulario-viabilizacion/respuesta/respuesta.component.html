@@ -1,6 +1,6 @@
 <div class="contenedor">
     <div class="contenido">
-        <div class="respuesta" *ngIf="formularioViable.aprobado" [@animationFadeOut]="formularioViable.aprobado">
+        <div class="respuesta" id="aprobado" *ngIf="formularioViable.aprobado" [@animationFadeOut]="formularioViable.aprobado">
             <img [src]="const.aprobado" alt="aprobado">
             <p class="mensaje">
                 Tu Solicitud es viable
@@ -10,13 +10,13 @@
             </p>
         </div>
 
-        <div class="respuesta" *ngIf="formularioViable.negado" [@animationFadeOut]="formularioViable.negado">
-            <img [src]="const.aprobado" alt="negado">
+        <div class="respuesta" id="negado" *ngIf="formularioViable.negado" [@animationFadeOut]="formularioViable.negado">
+            <img [src]="const.negado" alt="negado">
             <p class="mensajeNeg">
-                Negado
+                Lo sentimos
             </p>
             <p class="comentario">
-                Podemos financiar el 100% de tu vehículo<br> un asesor se comunicará contigo de inmediato.
+                ¡Tu solicitud de crédito no es viable en estos momentos!<br> Esperamos que cuentes con nosotros en una próxima oportunidad.
             </p>
         </div>      
 

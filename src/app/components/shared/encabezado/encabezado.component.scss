@@ -8,7 +8,10 @@
     height: 10vh;
     @include Asmall(){
         grid-template-columns: auto;
-        grid-template-columns: 1% auto 1%; 
+        grid-template-columns: 5% auto 5%;
+        position: fixed;
+        width: 100%;
+        z-index: 2; 
     }
     img{
         grid-column: 2;

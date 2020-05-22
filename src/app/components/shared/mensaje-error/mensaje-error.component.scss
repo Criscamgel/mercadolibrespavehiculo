@@ -6,6 +6,12 @@
     border-radius: 10px;
     height: 70vh;
     background-color: $color-blanco;
+    @include Asmall(){
+        grid-template-columns: auto;
+        margin: 4% 4%;
+        padding: 4% 0;
+        height: 0;
+    }
     .contenido{
         display: grid;
         grid-template-columns: auto 60%;

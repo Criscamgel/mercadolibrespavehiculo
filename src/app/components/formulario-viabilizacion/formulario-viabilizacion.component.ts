@@ -6,6 +6,7 @@ import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service'
 import { ContactoViable } from 'src/app/interfaces/contacto-viable';
 import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-formulario-viabilizacion',
@@ -44,7 +45,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   cargando: boolean = false;
   aprobado: boolean = false;
   negado: boolean = false;
-  errorApi: boolean = false;
+  desaparecerDetallesMobile: boolean = false;
 
   resultadoCalculadora = {};
 
@@ -70,9 +71,18 @@ export class FormularioViabilizacionComponent implements OnInit {
   };
 
 
-  constructor( private formBuilder: FormBuilder, private apiMercadolibre: ApiMercadolibreService, private calculadoraServicio: ApiCalculadoraService, private centralesRiesgo: CentralesRiesgoService ) {
+  constructor( private formBuilder: FormBuilder, private apiMercadolibre: ApiMercadolibreService, private calculadoraServicio: ApiCalculadoraService, private centralesRiesgo: CentralesRiesgoService, public breakpointObserver: BreakpointObserver ) {
     this.crearFormularios();
     this.obtenerInfoVehiculo();
+
+    breakpointObserver.observe([
+      '(max-width: 576px)'
+        ]).subscribe(result => {
+          if (result.matches) {
+            this.desaparecerDetallesMobile = true;
+          }
+        });
+
    }
 
   ngOnInit() {
@@ -165,7 +175,11 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   autenticar() {
+    console.log("Autenticar");
     this.centralesRiesgo.cargador = true;
+    if (this.desaparecerDetallesMobile) {
+      this.apiMercadolibre.desaparecerDetallesMobile = true;
+    }
     this.centralesRiesgo.autenticando();
   }
 
@@ -202,7 +216,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.negado = true;
         } else {
           this.centralesRiesgo.cargador = false;
-          this.errorApi = true;
+          this.apiMercadolibre.errorApi = true;
         }
       }
     });

@@ -4,10 +4,14 @@
 .contenido{
     display: grid;
     padding: 14% 10%;
+    @include Asmall(){
+        padding: 4%;
+    }
     .respuesta{
         align-self: center;
         justify-self: center;
         text-align: center;
+        
         img{
             padding: 5%;
         }
@@ -27,4 +31,10 @@
         } 
     }
     
+}
+
+#negado, #aprobado{
+    img{
+        width: 80%;
+    }
 }
