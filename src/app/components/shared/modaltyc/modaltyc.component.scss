@@ -27,6 +27,9 @@
                 height: 80vh;
                 padding: 0;
             }
+            @include full(){
+                height: 90vh;
+            }
         }
         .parrafo{
             text-align: justify;

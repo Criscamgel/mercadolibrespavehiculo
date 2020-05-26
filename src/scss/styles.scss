@@ -51,9 +51,6 @@
     padding: 0px 5%;
     margin: 0 auto;
   }
-  @include full(){
-    padding: 20px 80px 12px 80px;
-  }
 }
 
 .mat-step-icon .mat-icon, .mat-step-icon-content{
@@ -207,7 +204,7 @@ span.mat-button-wrapper{
 .contBoton{
   margin: 6% 0;
   @include full(){
-    margin: 10% 0;
+    margin: 12% 0;
   }
 }
 
