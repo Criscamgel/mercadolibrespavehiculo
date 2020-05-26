@@ -23,6 +23,7 @@ import { RespuestaComponent } from './components/formulario-viabilizacion/respue
 import { MensajeErrorComponent } from './components/shared/mensaje-error/mensaje-error.component';
 import { SpeedometerComponent } from './components/formulario-viabilizacion/speedometer/speedometer.component';
 import { GaugeChartModule } from 'angular-gauge-chart';
+import { UrlSeguraPipe } from './pipes/url-segura.pipe';
 
 registerLocaleData(localeEs, 'es');
 
@@ -40,7 +41,8 @@ registerLocaleData(localeEs, 'es');
     ModaltycComponent,
     RespuestaComponent,
     MensajeErrorComponent,
-    SpeedometerComponent
+    SpeedometerComponent,
+    UrlSeguraPipe
   ],
   imports: [
     BrowserModule,

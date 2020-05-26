@@ -6,7 +6,7 @@ import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service'
 import { ContactoViable } from 'src/app/interfaces/contacto-viable';
 import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-formulario-viabilizacion',
@@ -208,12 +208,12 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.aprobado = true;
 
       } else {
-        if ( res.IdResultado !== -1 ) {
+        if ( res.IdResultado !== -1 || res.IdResultado !== null) {
         this.centralesRiesgo.cargador = false;
         this.negado = true;
         } else {
           this.centralesRiesgo.cargador = false;
-          this.apiMercadolibre.errorApi = true;
+          this.apiMercadolibre.setSeleccionMensaje(2);
         }
       }
     });

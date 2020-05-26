@@ -13,6 +13,7 @@ export class ApiMercadolibreService {
   mostrarModalTyc = false;
   errorApi = false;
   desaparecerDetallesMobile = false;
+  numeroError: number;
 
   constructor(public http: HttpClient) { }
 
@@ -28,6 +29,11 @@ export class ApiMercadolibreService {
     } else {
       window.location.href = constantes.redirectMercadolibre;
     }
+  }
+
+  setSeleccionMensaje(value) {
+    this.numeroError = value;
+    this.errorApi = true;
   }
 
 }

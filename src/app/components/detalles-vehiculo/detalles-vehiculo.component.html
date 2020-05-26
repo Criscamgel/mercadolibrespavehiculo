@@ -10,7 +10,7 @@
     </div>
 
     <div class="contenido">
-        <img [src]="infoVehiculo.pictures[0].url" alt="">
+        <img [src]="infoVehiculo.pictures[0].url | urlSegura" alt="">
         <div class="detallesTecnicos">
             <div class="itemInfo" *ngFor="let item of informacion">
                 <b>{{item.nombre}}:</b> {{item.valor}}</div>

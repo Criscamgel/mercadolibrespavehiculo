@@ -37,12 +37,12 @@ export class AppComponent {
     const regexId = constantes.REGEX_ID;
     const id = urlVehiculo.match(regexId);
 
-    if (id !== null || id !== undefined) {
+    if (id == null ) {
+      this.centralesRiesgo.cargador = false;
+      this.apiMercadolibre.setSeleccionMensaje(1);
+    } else {
       this.apiMercadolibre.idVehiculo =  `MCO${id[1]}`;
       this.centralesRiesgo.cargador = false;
-    } else {
-      this.centralesRiesgo.cargador = false;
-      this.activarVistaError = true;
     }
   }
 
