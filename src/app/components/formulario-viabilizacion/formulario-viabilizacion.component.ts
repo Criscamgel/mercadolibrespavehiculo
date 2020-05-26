@@ -47,7 +47,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   negado: boolean = false;
   desaparecerDetallesMobile: boolean = false;
 
-  resultadoCalculadora = {};
+  resultadoCalculadora: any = {};
 
   contacto: ContactoViable = {
     DatosBasicos: {
@@ -71,7 +71,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   };
 
 
-  constructor( private formBuilder: FormBuilder, private apiMercadolibre: ApiMercadolibreService, private calculadoraServicio: ApiCalculadoraService, private centralesRiesgo: CentralesRiesgoService, public breakpointObserver: BreakpointObserver ) {
+  constructor( public formBuilder: FormBuilder, public apiMercadolibre: ApiMercadolibreService, public calculadoraServicio: ApiCalculadoraService, public centralesRiesgo: CentralesRiesgoService, public breakpointObserver: BreakpointObserver ) {
     this.crearFormularios();
     this.obtenerInfoVehiculo();
 

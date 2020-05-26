@@ -31,7 +31,13 @@
 // Extra large devices (large desktops, 1200px and up)
 
 @mixin desktopFull(){
-    @media (min-width: #{$desktop}){
+    @media (min-width: #{$desktop}) and (max-width: #{$Afull}){
+        @content;
+    }
+}
+
+@mixin full(){
+    @media (min-width: #{$full}){
         @content;
     }
 }

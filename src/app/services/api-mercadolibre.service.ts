@@ -14,7 +14,7 @@ export class ApiMercadolibreService {
   errorApi = false;
   desaparecerDetallesMobile = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   getInfoVehiculo(idVehiculo: string) {
     const url = `${environment.urlApi}${idVehiculo}`;

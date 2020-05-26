@@ -46,10 +46,13 @@
   display: grid !important;
   grid-template-columns: repeat(3, auto) !important;
   grid-template-rows: 1fr !important;
-  padding: 20px 80px 0 80px;
+  padding: 20px 80px 0 80px; 
   @include Asmall(){
     padding: 0px 5%;
     margin: 0 auto;
+  }
+  @include full(){
+    padding: 20px 80px 12px 80px;
   }
 }
 
@@ -202,7 +205,10 @@ span.mat-button-wrapper{
 }
 
 .contBoton{
-  margin: 6% 0 6% 0;
+  margin: 6% 0;
+  @include full(){
+    margin: 10% 0;
+  }
 }
 
 .mat-form-field-appearance-outline#dobleInput .mat-form-field-infix {
@@ -267,6 +273,10 @@ span.mat-button-wrapper{
   }
 
   @include desktopFull(){
+    display: none;
+  }
+
+  @include full(){
     display: none;
   }
 }

@@ -90,6 +90,9 @@ mat-radio-group {
 
 form.segundo{
     padding: 11% 10% 8% 10%;
+    @include full(){
+        padding: 13% 10% 13.5% 10%;
+    }
 }
 
 .tituloPaso{

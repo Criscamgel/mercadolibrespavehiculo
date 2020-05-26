@@ -28,7 +28,7 @@ export class CentralesRiesgoService {
   options = { headers: this.headers };
 
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     this.observableAutenticar = new BehaviorSubject<number>(this.autenticar);
   }
 

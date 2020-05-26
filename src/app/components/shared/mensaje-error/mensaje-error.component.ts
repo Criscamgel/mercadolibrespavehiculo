@@ -11,7 +11,7 @@ export class MensajeErrorComponent implements OnInit {
 
   const = constantes;
 
-  constructor(private apiMercadolibre: ApiMercadolibreService) { }
+  constructor(public apiMercadolibre: ApiMercadolibreService) { }
 
   ngOnInit() {
   }

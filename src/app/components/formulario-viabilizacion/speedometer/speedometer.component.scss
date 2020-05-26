@@ -96,7 +96,12 @@
     font-family: Arial;
     font-size: 13px;
     cursor: pointer;
-    border-radius: 20px;
+    padding: 22%;
+    border-radius: 60%;
+    @include full(){
+        font-size: 18px;
+        border: solid 8px #ddd;
+    }
   }
 
   .radioControl{
@@ -114,6 +119,10 @@
   input[type="radio"]:checked+label{
     border: solid 5px #06BBFF;
     box-shadow: -1px 1px 5px 0px #e0e0e0;
+    @include full(){
+        font-size: 18px;
+        border: solid 8px #ddd;
+    }
   }
 
   .contMedidor{

@@ -23,7 +23,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class AppComponent {
   /* urlVehiculo = document.referrer; */
-  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-556685664-jeep-wrangler-sport-jl-36-4x4-aut-3p-2019-_JM#position=4&type=item&tracking_id=ee73cea6-5054-48fd-8a4d-65744d500f60";
+  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-563352645-mercedes-benz-clase-cla-cla-180-urban-plus-_JM#promoted-items-used=4";
   activarVistaError = false;
   splash: boolean;
 

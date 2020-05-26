@@ -41,5 +41,8 @@
 #aprobado{
     img{
         margin: 19% 0;
+        @include full(){
+            margin: 34% 0;
+        }
     }
 }

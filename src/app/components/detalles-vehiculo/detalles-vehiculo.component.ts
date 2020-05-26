@@ -12,7 +12,7 @@ export class DetallesVehiculoComponent  {
   infoVehiculo: any;
   informacion: any = [];
 
-  constructor(private apiMercadolibre: ApiMercadolibreService) {
+  constructor(public apiMercadolibre: ApiMercadolibreService) {
     this.obtenerInfoVehiculo();
    }
 

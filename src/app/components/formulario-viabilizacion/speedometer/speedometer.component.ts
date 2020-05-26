@@ -26,7 +26,7 @@ export class SpeedometerComponent  {
     periodo = new FormControl(48);
     informacionPagar: any;
 
-  constructor(private calculadoraServicio: ApiCalculadoraService, public breakpointObserver: BreakpointObserver) {
+  constructor(public calculadoraServicio: ApiCalculadoraService, public breakpointObserver: BreakpointObserver) {
 
     this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[0];
     this.periodo.valueChanges.subscribe(value => this.cambioVelocimetro(value));

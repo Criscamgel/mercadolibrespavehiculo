@@ -12,7 +12,7 @@ export class ModaltycComponent {
 
   const = constantes;
 
-  constructor(private apiMercadolibre: ApiMercadolibreService, private formularioViable: FormularioViabilizacionComponent) { }
+  constructor(public apiMercadolibre: ApiMercadolibreService, public formularioViable: FormularioViabilizacionComponent) { }
 
   toggleMostrarModal() {
     this.apiMercadolibre.mostrarModalTyc = !this.apiMercadolibre.mostrarModalTyc;

@@ -25,7 +25,7 @@ export class RespuestaComponent implements OnInit {
 
   const = constantes;
 
-  constructor(private formularioViable: FormularioViabilizacionComponent, private apiMercadolibre: ApiMercadolibreService) {
+  constructor(public formularioViable: FormularioViabilizacionComponent, public apiMercadolibre: ApiMercadolibreService) {
   }
 
   ngOnInit() {
