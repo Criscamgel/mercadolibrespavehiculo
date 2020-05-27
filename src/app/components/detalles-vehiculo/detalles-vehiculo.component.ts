@@ -1,11 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
 import { constantes } from 'src/constants/constantes';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-detalles-vehiculo',
   templateUrl: './detalles-vehiculo.component.html',
-  styleUrls: ['./detalles-vehiculo.component.scss']
+  styleUrls: ['./detalles-vehiculo.component.scss'],
+  animations: [
+    trigger('animationFadeOut', [
+      transition(':enter', [
+        style({ opacity: '1' }),
+        animate(300)
+      ]),
+      transition(':leave', [
+        animate(300, style({ opacity: '0' }))
+      ]),
+      state('*', style({ opacity: '1' })),
+    ])
+  ]
 })
 export class DetallesVehiculoComponent  {
 
