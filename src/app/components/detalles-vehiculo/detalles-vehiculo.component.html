@@ -9,7 +9,7 @@
         </p>
     </div>
 
-    <div class="contenido" *ngIf="infoVehiculo">
+    <div class="contenido" *ngIf="infoVehiculo" [@animationFadeOut]="infoVehiculo">
         <img [src]="infoVehiculo.pictures[0].url | urlSegura" alt="">
         <div class="detallesTecnicos">
             <div class="itemInfo" *ngFor="let item of informacion">
