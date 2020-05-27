@@ -22,8 +22,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class AppComponent {
-  /* urlVehiculo = document.referrer; */
-  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-563352645-mercedes-benz-clase-cla-cla-180-urban-plus-_JM#promoted-items-used=4";
+  urlVehiculo = document.referrer;
+  /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-563352645-mercedes-benz-clase-cla-cla-180-urban-plus-_JM#promoted-items-used=4"; */
   activarVistaError = false;
   splash: boolean;
 
