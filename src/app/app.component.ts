@@ -23,7 +23,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class AppComponent {
   urlVehiculo = document.referrer;
-  /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-563352645-mercedes-benz-clase-cla-cla-180-urban-plus-_JM#promoted-items-used=4"; */
+ /*  urlVehiculo: string = "https://carro.mercadolibre.com.co/MCO-550254707-kia-picanto-2020-10-con-aire-obsequio-_JM#promoted-items-new=3"; */
   activarVistaError = false;
   splash: boolean;
 
