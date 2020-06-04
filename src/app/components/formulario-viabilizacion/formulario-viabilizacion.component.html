@@ -49,7 +49,7 @@
         </div>
 
         <div class="contBoton center">
-          <button mat-button matStepperNext>Financiar mi {{ infoVehiculo.title | primeraPalabra }}</button>
+          <button id="pasoUno" mat-button matStepperNext>Financiar mi {{ infoVehiculo.title | primeraPalabra }}</button>
         </div>
       </form>
     </mat-step>
@@ -182,6 +182,7 @@
         <div>
           <div class="contBoton center">
           <button
+          id="pasoDos"
           mat-button
           matStepperNext
           (click)="autenticar()"
