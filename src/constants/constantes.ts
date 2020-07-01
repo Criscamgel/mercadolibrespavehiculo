@@ -48,5 +48,6 @@ export const constantes = {
                 "Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.santanderconsumer.co"
                ]
     },
-    redirectMercadolibre:'https://www.mercadolibre.com.co/vehiculos/'
+    redirectMercadolibre:'https://www.mercadolibre.com.co/vehiculos/',
+    apiModular: 'https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacionModular'
 };

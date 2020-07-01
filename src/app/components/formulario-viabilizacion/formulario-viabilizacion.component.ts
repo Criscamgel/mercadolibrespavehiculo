@@ -99,7 +99,6 @@ export class FormularioViabilizacionComponent implements OnInit {
       this.valorFinanciar = this.infoVehiculo.price;
       this.porcentaje = this.calculadoraServicio.calcularPorcentajeCuotaInicial(value, this.cuotaInicial);
       this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(this.const.cuotas, this.valorFinanciar - value, this.porcentaje);
-      /* this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(Number(this.primero.value.cuotas), this.valorFinanciar - value); */
       this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar - value;
     });
 
@@ -134,6 +133,10 @@ export class FormularioViabilizacionComponent implements OnInit {
     return this.segundo.get('NumeroDocumento').invalid && this.segundo.get('NumeroDocumento').touched;
   }
 
+  get documentoExtranjeria() {
+    return this.segundo.controls['TipoDocumento'].value == 1 && this.segundo.controls['NumeroDocumento'].value.length == 6 && this.segundo.get('NumeroDocumento').touched;
+  }
+  
   get celularNoValido() {
     return this.segundo.get('Celular').invalid && this.segundo.get('Celular').touched;
   }
@@ -220,6 +223,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   });
+  this.centralesRiesgo.apiModular(this.contacto);
   }
 
 }

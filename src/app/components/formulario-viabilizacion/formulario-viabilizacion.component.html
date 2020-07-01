@@ -91,7 +91,7 @@
                     required
                     >
                     {{obj.name}}</option>
-                </select>
+                </select>                
                 <mat-error *ngIf="tipoIdNoValido">Elige una opción</mat-error>
             </mat-form-field>
 
@@ -103,10 +103,12 @@
                 formControlName="NumeroDocumento" 
                 placeholder="Nro. de identificación*"
                 (keypress)="patternCoincide($event, const.patternNumber)"
+                [maxlength]="segundo.controls['TipoDocumento'].value == 2 ? 6 : null"
                 required
-                >
+                >                
                 <mat-error *ngIf="idNoValido">Diligencia este campo</mat-error>
-            </mat-form-field>           
+                <div class="advertencia" *ngIf="documentoExtranjeria">¡Por favor verifica si es una cédula de extranjeria!</div>
+              </mat-form-field>           
 
         </div>
 
