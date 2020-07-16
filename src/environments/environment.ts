@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  urlA: "https://apitst.premiercredit.co:11445/premierservices_api_ext_tst/api/login/authenticate",
+  urlV: "https://apitst.premiercredit.co:11445/premierservices_api_ext_tst/api/viabilizacion/getViabilizacion"
+
 };
 
 /*
