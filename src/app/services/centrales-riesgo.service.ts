@@ -58,6 +58,7 @@ export class CentralesRiesgoService {
 
   respuesta( contacto: any ) {
       contacto = JSON.stringify(contacto);
+      console.log(contacto);
       return this.http.post(`${this.env.urlV}`, contacto, this.optionsVi);
   
   }
