@@ -21,9 +21,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
-export class AppComponent { 
-  /* urlVehiculo = document.referrer; */
-  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0";
+export class AppComponent {
+  urlVehiculo = document.referrer;
+  /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0"; */
   activarVistaError = false;
   splash: boolean;
 
