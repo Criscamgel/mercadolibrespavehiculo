@@ -14,6 +14,7 @@ export class CentralesRiesgoService {
   env = environment;
   const = constantes;
   cargador = false;
+  respuestaId: number;
 
   public observableAutenticar: any;
   public autenticar: any = 0;
@@ -64,7 +65,8 @@ export class CentralesRiesgoService {
   }
 
   apiModular(contacto: any) {
-    this.http.post(`${constantes.apiModular}`, contacto, this.optionsVi);
+    contacto = JSON.stringify(contacto);
+    return this.http.post(`${constantes.apiModular}`, contacto, this.optionsVi);
   }
 
 }

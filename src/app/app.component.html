@@ -4,8 +4,8 @@
     <app-encabezado></app-encabezado>
     <div class="contenedor">
         <!-- errorApi -->
-        <app-viabiliza-vehiculo *ngIf="!apiMercadolibre.errorApi || !splash" [@animationFadeOut]="!apiMercadolibre.errorApi || !splash"></app-viabiliza-vehiculo>
-        <app-mensaje-error *ngIf="apiMercadolibre.errorApi" [@animationFadeOut]="apiMercadolibre.errorApi"></app-mensaje-error>
+        <app-viabiliza-vehiculo *ngIf="!apiMercadolibre.errorApi || !splash || centralesRiesgo.respuestaId !== -1" [@animationFadeOut]="!apiMercadolibre.errorApi || !splash || centralesRiesgo.respuestaId !== -1"></app-viabiliza-vehiculo>
+        <app-mensaje-error *ngIf="apiMercadolibre.errorApi || centralesRiesgo.idResultado == -1" [@animationFadeOut]="apiMercadolibre.errorApi"></app-mensaje-error>
     </div>
     
 </div>

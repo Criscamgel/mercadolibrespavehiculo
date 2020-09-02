@@ -3,6 +3,7 @@ import { constantes } from 'src/constants/constantes';
 import { FormularioViabilizacionComponent } from 'src/app/components/formulario-viabilizacion/formulario-viabilizacion.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
+import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 
 @Component({
   selector: 'app-respuesta',
@@ -25,7 +26,7 @@ export class RespuestaComponent implements OnInit {
 
   const = constantes;
 
-  constructor(public formularioViable: FormularioViabilizacionComponent, public apiMercadolibre: ApiMercadolibreService) {
+  constructor(public formularioViable: FormularioViabilizacionComponent, public apiMercadolibre: ApiMercadolibreService, public centralesRiesgo: CentralesRiesgoService) {
   }
 
   ngOnInit() {

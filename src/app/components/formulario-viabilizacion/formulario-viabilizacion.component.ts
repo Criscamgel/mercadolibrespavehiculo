@@ -43,8 +43,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   valorCuota: number;
 
   cargando: boolean = false;
-  aprobado: boolean = false;
-  negado: boolean = false;
   desaparecerDetallesMobile: boolean = false;
 
   resultadoCalculadora: any = {};
@@ -203,27 +201,16 @@ export class FormularioViabilizacionComponent implements OnInit {
       }
   }
 
-    this.centralesRiesgo.respuesta(this.contacto).subscribe((res: any) => {
-      this.idResultado = res.IdResultado;
-      if (res.IdResultado === 2 || res.IdResultado === 3) {
-          
-        this.centralesRiesgo.cargador = false;
-        this.aprobado = true;
-
-      } else {
-        if ( res.IdResultado !== -1 || res.IdResultado !== null) {
-        this.centralesRiesgo.cargador = false;
-        this.negado = true;
-        } else {
-          this.centralesRiesgo.cargador = false;
-          this.apiMercadolibre.setSeleccionMensaje(2);
+    this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
+      this.centralesRiesgo.respuestaId = res.IdResultado;      
+      this.centralesRiesgo.cargador = false;
+        if ( res.IdResultado == -1) {
+           this.apiMercadolibre.setSeleccionMensaje(2);
         }
-      }
     });
   }
 
   });
-  this.centralesRiesgo.apiModular(this.contacto);
   }
 
 }
