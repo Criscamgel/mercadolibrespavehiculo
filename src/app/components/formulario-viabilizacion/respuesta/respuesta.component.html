@@ -1,6 +1,6 @@
 <div class="contenedor">
     <div class="contenido">
-        <div class="respuesta" [ngSwitch]="centralesRiesgo.respuestaId" id="aprobado" [@animationFadeOut]="formularioViable.aprobado">
+        <div class="respuesta" [ngSwitch]="centralesRiesgo.respuestaId" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">
             
             <div class="caso" *ngSwitchCase="2">
                 <img [src]="const.aprobado" alt="aprobado">
