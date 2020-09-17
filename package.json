@@ -24,6 +24,7 @@
     "@angular/router": "~8.2.13",
     "angular-gauge-chart": "^0.7.2",
     "angular-simple-gauge": "0.0.15",
+    "express": "^4.17.1",
     "ng2-currency-mask": "^9.0.2",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
