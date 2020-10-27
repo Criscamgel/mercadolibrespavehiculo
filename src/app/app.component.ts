@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiMercadolibreService } from './services/api-mercadolibre.service';
 import { constantes } from 'src/constants/constantes';
 import { CentralesRiesgoService } from './services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,32 +22,21 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   /* urlVehiculo = document.referrer; */
-  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0";
+  /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0"; */
   activarVistaError = false;
   splash: boolean;
 
-  constructor(public apiMercadolibre: ApiMercadolibreService, public centralesRiesgo: CentralesRiesgoService) {
-    this.animasplash();
-    this.centralesRiesgo.cargador = true;
-    this.obtenerIdVehiculo(this.urlVehiculo);
+  constructor(public apiMercadolibre: ApiMercadolibreService,
+              public centralesRiesgo: CentralesRiesgoService,
+              private route: ActivatedRoute) {
   }
 
-  obtenerIdVehiculo(urlVehiculo) {
-    const regexId = constantes.REGEX_ID;
-    const id = urlVehiculo.match(regexId);
-
-    if (id == null ) {
-      this.centralesRiesgo.cargador = false;
-      this.apiMercadolibre.setSeleccionMensaje(1);
-    } else {
-      this.apiMercadolibre.idVehiculo =  `MCO${id[1]}`;
-      setTimeout(() => {
-        this.centralesRiesgo.cargador = false;
-      }, 3000);
-      
-    }
+  public ngOnInit() {
+    this.apiMercadolibre.obtenerIdVehiculo();
+    this.animasplash();
+    this.centralesRiesgo.cargador = true;
   }
 
   animasplash() {

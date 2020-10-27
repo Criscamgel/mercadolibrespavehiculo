@@ -17,21 +17,4 @@ export class MensajeErrorComponent implements OnInit {
   ngOnInit() {
   }
 
-  /* seleccionMensaje(value) {
-    switch (value) {
-      case 1:
-        this.errorHistorial = true;
-        this.apiMercadolibre.errorApi = true;
-        break;
-
-      case 2:
-        this.errorApi = true;
-        this.apiMercadolibre.errorApi = true;
-        break;
-    
-      default:
-        break;
-    }
-  } */
-
 }

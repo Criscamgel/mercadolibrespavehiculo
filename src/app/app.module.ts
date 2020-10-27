@@ -24,6 +24,7 @@ import { MensajeErrorComponent } from './components/shared/mensaje-error/mensaje
 import { SpeedometerComponent } from './components/formulario-viabilizacion/speedometer/speedometer.component';
 import { GaugeChartModule } from 'angular-gauge-chart';
 import { UrlSeguraPipe } from './pipes/url-segura.pipe';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(localeEs, 'es');
 
@@ -52,7 +53,8 @@ registerLocaleData(localeEs, 'es');
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CurrencyMaskModule,
-    GaugeChartModule
+    GaugeChartModule,
+    RouterModule.forRoot([])
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]

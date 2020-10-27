@@ -1,6 +1,6 @@
 export interface DatosBasicos {
 
-  Nombre?: String; 
+  Nombre1?: String; 
   TipoDocumento?: String;  
   NumeroDocumento?: String;  
   Celular?: String;  

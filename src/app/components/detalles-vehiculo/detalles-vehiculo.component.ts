@@ -30,6 +30,9 @@ export class DetallesVehiculoComponent  {
    }
 
   obtenerInfoVehiculo() {
+    /* if ( this.apiMercadolibre.idVehiculo == undefined || this.apiMercadolibre.idVehiculo == null ){
+      this.apiMercadolibre.obtenerIdVehiculo();
+    } else { */
     this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
     .subscribe(infoVehiculo => {
       this.infoVehiculo = infoVehiculo;
@@ -43,6 +46,7 @@ export class DetallesVehiculoComponent  {
     }, ( error ) => {
         this.apiMercadolibre.errorApi = true;
     });
+    /* } */
   }
 
   obtenerNombreValue(nameTexto: string) {

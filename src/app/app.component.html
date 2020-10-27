@@ -5,7 +5,7 @@
     <div class="contenedor">
         <!-- errorApi -->
         <app-viabiliza-vehiculo *ngIf="!apiMercadolibre.errorApi || !splash || centralesRiesgo.respuestaId !== -1" [@animationFadeOut]="!apiMercadolibre.errorApi || !splash || centralesRiesgo.respuestaId !== -1"></app-viabiliza-vehiculo>
-        <app-mensaje-error *ngIf="apiMercadolibre.errorApi || centralesRiesgo.respuestaId == -1" [@animationFadeOut]="apiMercadolibre.errorApi || centralesRiesgo.respuestaId == -1"></app-mensaje-error>
+        <app-mensaje-error *ngIf="apiMercadolibre.idVehiculo == undefined || apiMercadolibre.errorApi || centralesRiesgo.respuestaId == -1" [@animationFadeOut]="apiMercadolibre.errorApi || centralesRiesgo.respuestaId == -1"></app-mensaje-error>
     </div>
     
 </div>

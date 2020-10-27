@@ -51,7 +51,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     DatosBasicos: {
       TipoDocumento: null,
       NumeroDocumento: null,
-      Nombre: null,
+      Nombre1: null,
       Celular: null,
       CorreoPersonal: null
     },
@@ -71,8 +71,9 @@ export class FormularioViabilizacionComponent implements OnInit {
 
   constructor( public formBuilder: FormBuilder, public apiMercadolibre: ApiMercadolibreService, public calculadoraServicio: ApiCalculadoraService, public centralesRiesgo: CentralesRiesgoService, public breakpointObserver: BreakpointObserver ) {
     this.crearFormularios();
+    if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
     this.obtenerInfoVehiculo();
-
+    }
     breakpointObserver.observe([
       '(max-width: 576px)'
         ]).subscribe(result => {
@@ -111,7 +112,7 @@ export class FormularioViabilizacionComponent implements OnInit {
       AutorizaConsultaCentrales: [false, Validators.required]
     });
 
-    this.segundo.controls['Nombre'].valueChanges.subscribe(value => this.contacto.DatosBasicos.Nombre = value);
+    this.segundo.controls['Nombre'].valueChanges.subscribe(value => this.contacto.DatosBasicos.Nombre1 = value);
     this.segundo.controls['TipoDocumento'].valueChanges.subscribe(value => this.contacto.DatosBasicos.TipoDocumento = value);
     this.segundo.controls['NumeroDocumento'].valueChanges.subscribe(value => this.contacto.DatosBasicos.NumeroDocumento = value);
     this.segundo.controls['Celular'].valueChanges.subscribe(value => this.contacto.DatosBasicos.Celular = value);
@@ -149,15 +150,17 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   obtenerInfoVehiculo() {
-    this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
-    .subscribe((infoVehiculo) => {
-      this.infoVehiculo = infoVehiculo;
-      this.valorFinanciar = this.infoVehiculo.price;
-      this.cuotaInicial = this.calculadoraServicio.cuotaInicial(this.infoVehiculo.price);
-      this.primero.controls.cuotaInicial.setValue(this.cuotaInicial);
-      this.valorFinanciar -= this.cuotaInicial;
-      this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar;
-    });
+    if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
+      this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
+      .subscribe((infoVehiculo) => {
+        this.infoVehiculo = infoVehiculo;
+        this.valorFinanciar = this.infoVehiculo.price;
+        this.cuotaInicial = this.calculadoraServicio.cuotaInicial(this.infoVehiculo.price);
+        this.primero.controls.cuotaInicial.setValue(this.cuotaInicial);
+        this.valorFinanciar -= this.cuotaInicial;
+        this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar;
+      });
+    }
 
   }
 
