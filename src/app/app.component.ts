@@ -23,7 +23,7 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class AppComponent implements OnInit {
-  /* urlVehiculo = document.referrer; */
+  urlVehiculo = document.referrer;
   /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0"; */
   activarVistaError = false;
   splash: boolean;
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.apiMercadolibre.obtenerIdVehiculo();
+    this.apiMercadolibre.obtenerIdVehiculo(this.urlVehiculo);
     this.animasplash();
     this.centralesRiesgo.cargador = true;
   }

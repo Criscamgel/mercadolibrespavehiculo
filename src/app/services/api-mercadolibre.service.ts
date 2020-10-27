@@ -22,34 +22,23 @@ export class ApiMercadolibreService {
               private route: ActivatedRoute
     ) { }
 
-    obtenerIdVehiculo() {
-      /* const regexId = constantes.REGEX_ID;
-      const id = urlVehiculo.match(regexId); */
-  
-      this.route.queryParams.subscribe((data: any) => {
-        /* console.log(data.idvehiculo); */
-        if (data.idvehiculo !== undefined || data.idvehiculo !== null) {
-          this.idVehiculo =  data.idvehiculo;
-          /* this.getInfoVehiculo(this.idVehiculo); */
-          setTimeout(() => {
-            this.centralesRiesgo.cargador = false;
-          }, 3000);
-        } else {
-          this.centralesRiesgo.cargador = false;
-          this.setSeleccionMensaje(1);
-        }
-      });
+    obtenerIdVehiculo(value) {
+      if (value.match(constantes.REGEX_ID)) {
+      this.idVehiculo = 'MCO' + value.match(constantes.REGEX_ID)[1];
+      this.getInfoVehiculo(this.idVehiculo);
+      } else {
+        this.setSeleccionMensaje(1);
+      }
+      setTimeout(() => {
+        this.centralesRiesgo.cargador = false;
+      }, 3000);
 
     }
 
   getInfoVehiculo(idVehiculo: string) {
-      if (idVehiculo == undefined || idVehiculo == null){
-        this.obtenerIdVehiculo();
-      } else {
       const url = `${environment.urlApi}${idVehiculo}`;
       return this.http.get(url);
       }
-  }
 
   volverNavegador() {
     if (window.history.go(-1) !== undefined) {
@@ -61,7 +50,6 @@ export class ApiMercadolibreService {
 
   setSeleccionMensaje(value) {
     this.numeroError = value;
-    /* this.errorApi = true; */
   }
 
 }

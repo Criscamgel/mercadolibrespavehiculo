@@ -26,13 +26,12 @@ export class DetallesVehiculoComponent  {
   informacion: any = [];
 
   constructor(public apiMercadolibre: ApiMercadolibreService) {
+    if (this.apiMercadolibre.idVehiculo) {
     this.obtenerInfoVehiculo();
+    }
    }
 
   obtenerInfoVehiculo() {
-    /* if ( this.apiMercadolibre.idVehiculo == undefined || this.apiMercadolibre.idVehiculo == null ){
-      this.apiMercadolibre.obtenerIdVehiculo();
-    } else { */
     this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
     .subscribe(infoVehiculo => {
       this.infoVehiculo = infoVehiculo;
