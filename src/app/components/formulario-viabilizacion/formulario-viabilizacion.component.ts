@@ -62,7 +62,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     },
     OtrosDatos: {
       AutorizaConsultaCentrales: false,
-      AutorizaMareigua: false,
+      AutorizaMareigua: true,
       ValorFinanciar: null,
       IdentificacionVendedor: 0
     }

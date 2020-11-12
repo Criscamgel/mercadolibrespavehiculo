@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiMercadolibreService } from './services/api-mercadolibre.service';
-import { constantes } from 'src/constants/constantes';
 import { CentralesRiesgoService } from './services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
