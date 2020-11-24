@@ -8,4 +8,16 @@
         <app-mensaje-error *ngIf="apiMercadolibre.idVehiculo == undefined || apiMercadolibre.errorApi || centralesRiesgo.respuestaId == -1" [@animationFadeOut]="apiMercadolibre.errorApi || centralesRiesgo.respuestaId == -1"></app-mensaje-error>
     </div>
     
+    <div class="msjEnriquecido" *ngIf="scanParams.enriquecido">
+        <div></div>
+        <div class="msjContenido">
+                <b>Obtén tu crédito y tendrás acceso a vehículos validados por Santander con los que tienes:</b>
+                <ul>
+                    <li>Tranquilidad: Recibe un reporte RUNT para que verifiques el carro antes de elegirlo</li>
+                    <li>Confianza: Obtén descuento en peritaje con nuestros aliados para que evalúes el carro antes de comprarlo</li>
+                    <li>Tranquilidad: Recibe un reporte RUNT para que verifiques el carro antes de elegirlo</li>
+                </ul>
+        </div>
+        <div></div>
+    </div>
 </div>

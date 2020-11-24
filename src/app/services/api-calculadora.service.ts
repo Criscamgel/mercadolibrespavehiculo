@@ -55,8 +55,6 @@ export class ApiCalculadoraService {
       this.resultadoCalculadora.resultadoCuota.push(resultado);
       }
     });
-
-    /* console.log(this.resultadoCalculadora); */
     this.observablResultadoCalculadora.next(this.resultadoCalculadora);
     return this.resultadoCalculadora;
   }

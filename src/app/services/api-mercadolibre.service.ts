@@ -23,8 +23,8 @@ export class ApiMercadolibreService {
     ) { }
 
     obtenerIdVehiculo(value) {
-      if (value.match(constantes.REGEX_ID)) {
-      this.idVehiculo = 'MCO' + value.match(constantes.REGEX_ID)[1];
+      if (value.match(/MCO-(.*?)(-|$)/)) {
+      this.idVehiculo = 'MCO' + value.match(/MCO-(.*?)(-|$)/)[1];
       this.getInfoVehiculo(this.idVehiculo);
       } else {
         this.setSeleccionMensaje(1);

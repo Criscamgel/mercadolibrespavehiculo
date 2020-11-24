@@ -1,6 +1,6 @@
 
 export const constantes = {
-    REGEX_ID: '\/MCO-(.*?)(-|$)',
+    REGEX_ID: '/MCO-(.*?)(-|$)/',
     idInformacion: ['Marca', 'Modelo', 'Versión', 'Año', 'Cilindrada', 'Kilómetros'],
     cuotas: [48, 60, 72, 84],
     nombreCuotas: ['cuatroOcho', 'seisCero', 'sieteDos', 'ochoCuatro'],

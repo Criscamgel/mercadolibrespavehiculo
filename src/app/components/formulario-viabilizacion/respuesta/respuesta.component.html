@@ -1,8 +1,28 @@
 <div class="contenedor">
     <div class="contenido">
-        <div class="respuesta" [ngSwitch]="centralesRiesgo.respuestaId" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">
-            
-            <div class="caso" *ngSwitchCase="2">
+        <div class="respuesta" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">
+
+                   
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && !scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    Tu Solicitud es viable
+                </p>
+                <p class="comentario">
+                    Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.
+                </p>
+            </div>
+            <!--  Preaprobado Contexto  -->
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    ¡Felicitaciones! Tu crédito es viable
+                </p>
+                <p class="comentario">
+                    ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo <a class="pointer whatsapp" href="https://api.whatsapp.com/send?phone=5717443592">click aquí <i class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+                </p>
+            </div>
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && !scanParams.enriquecido">
                 <img [src]="const.aprobado" alt="aprobado">
                 <p class="mensaje">
                     Tu Solicitud es viable
@@ -11,32 +31,55 @@
                     Podemos financiar el 100% de tu vehículo<br>un asesor se comunicará contigo de inmediato.
                 </p>
             </div>
-            <div class="caso" *ngSwitchCase="3">
+            <!-- Aprobado Enriquecido -->
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && scanParams.enriquecido">
                 <img [src]="const.aprobado" alt="aprobado">
                 <p class="mensaje">
                     Tu Solicitud es viable
                 </p>
                 <p class="comentario">
-                    Podemos financiar el 100% de tu vehículo<br>un asesor se comunicará contigo de inmediato.
+                    ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo <a class="pointer whatsapp" href="https://api.whatsapp.com/send?phone=5717443592">click aquí <i class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
                 </p>
             </div>
-            <div class="caso" *ngSwitchCase="4">
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 4 && !scanParams.enriquecido">
                 <img [src]="const.aprobado" alt="aprobado">
                 <p class="mensaje">
-                    Solicitud en proceso
+                    Tu solicitud ya está en proceso
                 </p>
                 <p class="comentario">
-                    Ya tienes una solicitud en proceso.
+                    Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo.
+                </p>
+            </div>
+            <!-- Caso en Curso Enriquecido -->
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 4 && scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    Tu solicitud ya está en proceso
+                </p>
+                <p class="comentario">
+                    Chatea con tu asesor personalizado haciendo <a class="pointer whatsapp" href="https://api.whatsapp.com/send?phone=5717443592">click aquí <i class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
                 </p>
             </div>
 
-            <div class="caso" *ngSwitchCase="1">
+            <!-- Negativos -->
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == -1">
+                <img [src]="const.negado" alt="negado">
+                <p class="mensaje">
+                    ¡Ups ocurrió un error!
+                </p>
+                <p class="comentario">
+                    Tuvimos un problema, por favor intenta más tarde.
+                </p>
+            </div>
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 1">
                 <img [src]="const.negado" alt="negado">
                 <p class="mensajeNeg">
                     Lo sentimos
                 </p>
                 <p class="comentario">
-                    ¡Tu solicitud de crédito no es viable en estos momentos!<br> Esperamos que cuentes con nosotros en una próxima oportunidad.
+                    Tu solicitud no es viable en este momento.
                 </p>
             </div>
         </div>

@@ -25,6 +25,7 @@
     "angular-gauge-chart": "^0.7.2",
     "angular-simple-gauge": "0.0.15",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
     "ng2-currency-mask": "^9.0.2",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",

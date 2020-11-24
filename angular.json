@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/material/custom-theme.scss",
-              "src/scss/styles.scss"
+              "src/scss/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           },

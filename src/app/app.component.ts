@@ -3,6 +3,7 @@ import { ApiMercadolibreService } from './services/api-mercadolibre.service';
 import { CentralesRiesgoService } from './services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
+import { ScanparamsService } from './services/scanparams.service';
 
 @Component({
   selector: 'app-root',
@@ -22,17 +23,20 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class AppComponent implements OnInit {
-  urlVehiculo = document.referrer;
-  /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0"; */
+  /* urlVehiculo = document.referrer; */
+  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0";
   activarVistaError = false;
   splash: boolean;
 
   constructor(public apiMercadolibre: ApiMercadolibreService,
               public centralesRiesgo: CentralesRiesgoService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private scanParams: ScanparamsService
+              ) {
   }
 
   public ngOnInit() {
+    this.scanParams.getParam();
     this.apiMercadolibre.obtenerIdVehiculo(this.urlVehiculo);
     this.animasplash();
     this.centralesRiesgo.cargador = true;
