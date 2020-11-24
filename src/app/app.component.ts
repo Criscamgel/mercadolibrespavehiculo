@@ -30,8 +30,7 @@ export class AppComponent implements OnInit {
 
   constructor(public apiMercadolibre: ApiMercadolibreService,
               public centralesRiesgo: CentralesRiesgoService,
-              private route: ActivatedRoute,
-              private scanParams: ScanparamsService
+              public scanParams: ScanparamsService
               ) {
   }
 
