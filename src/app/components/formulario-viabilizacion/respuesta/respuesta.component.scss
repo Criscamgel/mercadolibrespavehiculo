@@ -41,9 +41,12 @@
 #aprobado{
     img{
         width: 100%;
-        margin: 19% 0;
-        @include full(){
-            margin: 34% 0;
+        padding: 130px 130px 0px 130px;
+        @include Asmall(){
+            padding: 40px 20px 0;
+        }
+        @include smallTablet(){
+            padding: 40px 20px 0;
         }
     }
 }

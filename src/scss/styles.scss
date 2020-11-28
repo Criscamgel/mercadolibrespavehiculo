@@ -138,6 +138,7 @@
 .mat-horizontal-content-container{
   background-color: $color-blanco;
   padding: 0 !important;
+  min-height: 100vh;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-infix{

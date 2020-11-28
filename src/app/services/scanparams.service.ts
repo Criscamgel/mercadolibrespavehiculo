@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ScanparamsService {
 
   enriquecido = false;
+  utm: string;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -14,6 +15,12 @@ export class ScanparamsService {
     this.route.queryParams.subscribe((data: any) => {
       if (data.fuente === 'enriquecido') {
         this.enriquecido = true;
+      }
+    });
+
+    this.route.queryParams.subscribe((data: any) => {
+      if (data.utm_source) {
+        this.utm = data.utm_source;
       }
     });
   }

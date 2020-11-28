@@ -7,6 +7,7 @@ import { ContactoViable } from 'src/app/interfaces/contacto-viable';
 import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import {BreakpointObserver} from '@angular/cdk/layout';
+import { ScanparamsService } from 'src/app/services/scanparams.service';
 
 @Component({
   selector: 'app-formulario-viabilizacion',
@@ -64,12 +65,18 @@ export class FormularioViabilizacionComponent implements OnInit {
       AutorizaConsultaCentrales: false,
       AutorizaMareigua: true,
       ValorFinanciar: null,
-      IdentificacionVendedor: 0
+      IdentificacionVendedor: 0,
+      InfoUno: null
     }
   };
 
 
-  constructor( public formBuilder: FormBuilder, public apiMercadolibre: ApiMercadolibreService, public calculadoraServicio: ApiCalculadoraService, public centralesRiesgo: CentralesRiesgoService, public breakpointObserver: BreakpointObserver ) {
+  constructor( public formBuilder: FormBuilder,
+               public apiMercadolibre: ApiMercadolibreService,
+               public calculadoraServicio: ApiCalculadoraService,
+               public centralesRiesgo: CentralesRiesgoService,
+               public breakpointObserver: BreakpointObserver,
+               public scanParams: ScanparamsService ) {
     this.crearFormularios();
     if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
     this.obtenerInfoVehiculo();
@@ -146,7 +153,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     return this.segundo.get('ActividadEconomica').invalid && this.segundo.get('ActividadEconomica').touched;
   }
   get ingresoMensualNoValido() {
-    return this.segundo.get('IngresoMensual').invalid && this.segundo.get('IngresoMensual').touched;
+    return this.segundo.get('IngresoMensual') && this.segundo.get('IngresoMensual').touched;
   }
 
   obtenerInfoVehiculo() {
@@ -177,9 +184,16 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   autenticar() {
+    // tslint:disable-next-line: no-debugger
+    debugger;
+    this.contacto.OtrosDatos.InfoUno = this.scanParams.utm;
+    console.log(this.contacto.OtrosDatos.InfoUno);
     this.centralesRiesgo.cargador = true;
     if (this.desaparecerDetallesMobile) {
       this.apiMercadolibre.desaparecerDetallesMobile = true;
+    }
+    if (this.scanParams.enriquecido) {
+      this.scanParams.enriquecido = false;
     }
     this.centralesRiesgo.autenticando();
   }
@@ -205,7 +219,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
     this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
-      this.centralesRiesgo.respuestaId = res.IdResultado;      
+      this.centralesRiesgo.respuestaId = res.IdResultado;
       this.centralesRiesgo.cargador = false;
         if ( res.IdResultado == -1) {
            this.apiMercadolibre.setSeleccionMensaje(2);

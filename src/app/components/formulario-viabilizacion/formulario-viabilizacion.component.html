@@ -167,6 +167,7 @@
             required
             >
             <mat-error *ngIf="ingresoMensualNoValido">Necesitamos saber tus ingresos mensuales</mat-error>
+            <mat-error *ngIf="segundo.get('IngresoMensual').errors?.min">Los ingresos deben ser mayores a $ {{const.valorMinIngreso | number:'1.0':'es' }}</mat-error>
           </mat-form-field>
 
           <div id="check" class="contCampoUno center">
