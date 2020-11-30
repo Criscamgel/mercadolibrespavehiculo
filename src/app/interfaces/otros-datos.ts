@@ -1,9 +1,10 @@
 export interface OtrosDatos {
 
-    AutorizaConsultaCentrales?: Boolean;
-    AutorizaMareigua?: Boolean;
-    ValorFinanciar?: Number;
-    IdentificacionVendedor?: Number;
+    AutorizaConsultaCentrales?: boolean;
+    AutorizaMareigua?: boolean;
+    ValorFinanciar?: number;
+    IdentificacionVendedor?: number;
+    ConcesionarioRadicacion?: number;
     InfoUno: any;
 
 }

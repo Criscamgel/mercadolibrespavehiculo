@@ -8,6 +8,8 @@ export class ScanparamsService {
 
   enriquecido = false;
   utm: string;
+  idc: number;
+  idv: number;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -16,11 +18,14 @@ export class ScanparamsService {
       if (data.fuente === 'enriquecido') {
         this.enriquecido = true;
       }
-    });
-
-    this.route.queryParams.subscribe((data: any) => {
       if (data.utm_source) {
         this.utm = data.utm_source;
+      }
+      if (data.idc) {
+        this.idc = Number(data.idc);
+      }
+      if (data.idv) {
+        this.idv = Number(data.idv);
       }
     });
   }

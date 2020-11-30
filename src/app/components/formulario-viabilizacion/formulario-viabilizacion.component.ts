@@ -65,6 +65,7 @@ export class FormularioViabilizacionComponent implements OnInit {
       AutorizaConsultaCentrales: false,
       AutorizaMareigua: true,
       ValorFinanciar: null,
+      ConcesionarioRadicacion: 0,
       IdentificacionVendedor: 0,
       InfoUno: null
     }
@@ -186,8 +187,15 @@ export class FormularioViabilizacionComponent implements OnInit {
   autenticar() {
     // tslint:disable-next-line: no-debugger
     debugger;
-    this.contacto.OtrosDatos.InfoUno = this.scanParams.utm;
-    console.log(this.contacto.OtrosDatos.InfoUno);
+    if (this.scanParams.utm) {
+      this.contacto.OtrosDatos.InfoUno = this.scanParams.utm;
+    }
+    if (this.scanParams.idc) {
+      this.contacto.OtrosDatos.IdentificacionVendedor = this.scanParams.idc;
+    }
+    if (this.scanParams.idv) {
+      this.contacto.OtrosDatos.IdentificacionVendedor = this.scanParams.idv;
+    }
     this.centralesRiesgo.cargador = true;
     if (this.desaparecerDetallesMobile) {
       this.apiMercadolibre.desaparecerDetallesMobile = true;
