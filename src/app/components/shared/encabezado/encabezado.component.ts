@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScanparamsService } from 'src/app/services/scanparams.service';
 import { constantes } from 'src/constants/constantes';
 
 @Component({
@@ -10,7 +11,9 @@ export class EncabezadoComponent implements OnInit {
 
   const = constantes;
 
-  constructor() { }
+  constructor(
+    public scanParams: ScanparamsService
+  ) { }
 
   ngOnInit() {
   }

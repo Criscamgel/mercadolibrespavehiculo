@@ -185,8 +185,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   autenticar() {
-    // tslint:disable-next-line: no-debugger
-    debugger;
     if (this.scanParams.utm) {
       this.contacto.OtrosDatos.InfoUno = this.scanParams.utm;
     }
@@ -201,6 +199,8 @@ export class FormularioViabilizacionComponent implements OnInit {
       this.apiMercadolibre.desaparecerDetallesMobile = true;
     }
     if (this.scanParams.enriquecido) {
+      this.scanParams.enriquecido = true;
+    } else {
       this.scanParams.enriquecido = false;
     }
     this.centralesRiesgo.autenticando();
