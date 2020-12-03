@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
       this.scanParams.getParamIdVehiculo().subscribe((data: any) => {
           this.contador = this.contador + 1;
-          console.log(this.contador);
           if (data.idvehiculo && this.contador > 1) {
             if (data.idvehiculo) {
               this.idVehiculo = data.idvehiculo;

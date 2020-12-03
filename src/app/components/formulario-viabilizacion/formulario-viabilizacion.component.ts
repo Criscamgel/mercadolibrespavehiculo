@@ -78,6 +78,7 @@ export class FormularioViabilizacionComponent implements OnInit {
                public breakpointObserver: BreakpointObserver,
                public scanParams: ScanparamsService ) {
     this.crearFormularios();
+    this.segundo.controls['TipoDocumento'].setValue(1);
     setTimeout(() => {
       if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
       this.obtenerInfoVehiculo();
