@@ -45,7 +45,6 @@ export class FormularioViabilizacionComponent implements OnInit {
 
   cargando: boolean = false;
   desaparecerDetallesMobile: boolean = false;
-
   resultadoCalculadora: any = {};
 
   contacto: ContactoViable = {
@@ -79,9 +78,11 @@ export class FormularioViabilizacionComponent implements OnInit {
                public breakpointObserver: BreakpointObserver,
                public scanParams: ScanparamsService ) {
     this.crearFormularios();
-    if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
-    this.obtenerInfoVehiculo();
-    }
+    setTimeout(() => {
+      if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
+      this.obtenerInfoVehiculo();
+      }
+    }, 200);
     breakpointObserver.observe([
       '(max-width: 576px)'
         ]).subscribe(result => {
@@ -111,7 +112,7 @@ export class FormularioViabilizacionComponent implements OnInit {
 
     this.segundo = this.formBuilder.group({
       Nombre: ['', [Validators.required, Validators.minLength(5)]],
-      TipoDocumento: [null, Validators.required],
+      TipoDocumento: [1, Validators.required],
       NumeroDocumento: ['', [Validators.required, Validators.minLength(5)]],
       Celular: ['', [Validators.required, Validators.pattern(this.const.patternCel), Validators.maxLength(10), Validators.minLength(10)]],
       CorreoPersonal: ['', [Validators.required, Validators.pattern(this.const.patternMail), Validators.minLength(10)]],
@@ -158,8 +159,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   obtenerInfoVehiculo() {
-    if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
-      this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
+    this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
       .subscribe((infoVehiculo) => {
         this.infoVehiculo = infoVehiculo;
         this.valorFinanciar = this.infoVehiculo.price;
@@ -168,7 +168,6 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.valorFinanciar -= this.cuotaInicial;
         this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciar;
       });
-    }
 
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiMercadolibreService } from './api-mercadolibre.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,20 @@ import { ActivatedRoute } from '@angular/router';
 export class ScanparamsService {
 
   enriquecido = false;
+  idVehiculo: string;
   utm: string;
   idc: number;
   idv: number;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              public apiMercadolibre: ApiMercadolibreService
+              ) { }
 
-  getParam() {
-    this.route.queryParams.subscribe((data: any) => {
+    getParamIdVehiculo() {
+    return this.route.queryParams;
+  }
+    getParams() {
+      this.route.queryParams.subscribe((data: any) => {
       if (data.fuente === 'enriquecido') {
         this.enriquecido = true;
       }

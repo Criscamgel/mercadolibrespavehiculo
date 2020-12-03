@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { constantes } from 'src/constants/constantes';
 import { CentralesRiesgoService } from './centrales-riesgo.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,22 +17,28 @@ export class ApiMercadolibreService {
   numeroError: number;
 
   constructor(public http: HttpClient,
-              public centralesRiesgo: CentralesRiesgoService,
-              private route: ActivatedRoute
+              public centralesRiesgo: CentralesRiesgoService
     ) { }
 
     obtenerIdVehiculo(value) {
       if (value.match(/MCO-(.*?)(-|$)/)) {
       this.idVehiculo = 'MCO' + value.match(/MCO-(.*?)(-|$)/)[1];
       this.getInfoVehiculo(this.idVehiculo);
-      } else {
-        this.setSeleccionMensaje(1);
       }
       setTimeout(() => {
         this.centralesRiesgo.cargador = false;
       }, 3000);
-
     }
+
+    usarIdVehiculo(value: string) {
+      if (value) {
+      this.idVehiculo = value;
+      this.getInfoVehiculo(this.idVehiculo);
+      }
+      setTimeout(() => {
+        this.centralesRiesgo.cargador = false;
+      }, 3000);
+  }
 
   getInfoVehiculo(idVehiculo: string) {
       const url = `${environment.urlApi}${idVehiculo}`;
@@ -50,6 +55,7 @@ export class ApiMercadolibreService {
 
   setSeleccionMensaje(value) {
     this.numeroError = value;
+    this.errorApi = true;
   }
 
 }

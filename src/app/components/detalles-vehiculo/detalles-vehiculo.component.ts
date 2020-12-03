@@ -26,14 +26,17 @@ export class DetallesVehiculoComponent  {
   informacion: any = [];
 
   constructor(public apiMercadolibre: ApiMercadolibreService) {
+    setTimeout(() => {
     if (this.apiMercadolibre.idVehiculo) {
-    this.obtenerInfoVehiculo();
+          this.obtenerInfoVehiculo();
     }
+    }, 200);
    }
 
   obtenerInfoVehiculo() {
     this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
     .subscribe(infoVehiculo => {
+      this.apiMercadolibre.infoVehiculo = this.infoVehiculo;
       this.infoVehiculo = infoVehiculo;
       constantes.idInformacion.forEach((item, index) => {
         const propiedad = {nombre: '', valor: ''};
@@ -41,11 +44,9 @@ export class DetallesVehiculoComponent  {
         propiedad.valor = this.obtenerNombreValue(item);
         this.informacion.push(propiedad);
         });
-      this.apiMercadolibre.infoVehiculo = this.infoVehiculo;
     }, ( error ) => {
         this.apiMercadolibre.errorApi = true;
     });
-    /* } */
   }
 
   obtenerNombreValue(nameTexto: string) {

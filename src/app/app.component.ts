@@ -23,8 +23,9 @@ import { ScanparamsService } from './services/scanparams.service';
   ]
 })
 export class AppComponent implements OnInit {
-  /* urlVehiculo = document.referrer; */
-  urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0";
+  idVehiculo: string;
+  urlVehiculo = document.referrer;
+  /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0"; */
   activarVistaError = false;
   splash: boolean;
 
@@ -35,10 +36,17 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.scanParams.getParam();
-    this.apiMercadolibre.obtenerIdVehiculo(this.urlVehiculo);
-    this.animasplash();
-    this.centralesRiesgo.cargador = true;
+      this.scanParams.getParamIdVehiculo().subscribe((data: any) => {
+        if (data.idvehiculo) {
+          this.idVehiculo = data.idvehiculo;
+          this.apiMercadolibre.usarIdVehiculo(this.idVehiculo);
+        } else {
+          this.apiMercadolibre.obtenerIdVehiculo(this.urlVehiculo);
+        }
+      });
+      this.scanParams.getParams();
+      this.animasplash();
+      this.centralesRiesgo.cargador = true;
   }
 
   animasplash() {
