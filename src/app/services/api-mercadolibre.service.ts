@@ -24,6 +24,8 @@ export class ApiMercadolibreService {
       if (value.match(/MCO-(.*?)(-|$)/)) {
       this.idVehiculo = 'MCO' + value.match(/MCO-(.*?)(-|$)/)[1];
       this.getInfoVehiculo(this.idVehiculo);
+      } else {
+        this.setSeleccionMensaje(1);
       }
       setTimeout(() => {
         this.centralesRiesgo.cargador = false;
@@ -34,6 +36,8 @@ export class ApiMercadolibreService {
       if (value) {
       this.idVehiculo = value;
       this.getInfoVehiculo(this.idVehiculo);
+      } else {
+        this.setSeleccionMensaje(1);
       }
       setTimeout(() => {
         this.centralesRiesgo.cargador = false;
@@ -54,6 +58,7 @@ export class ApiMercadolibreService {
   }
 
   setSeleccionMensaje(value) {
+    console.log('setSeleccionMensaje');
     this.numeroError = value;
     this.errorApi = true;
   }

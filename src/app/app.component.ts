@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiMercadolibreService } from './services/api-mercadolibre.service';
 import { CentralesRiesgoService } from './services/centrales-riesgo.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ActivatedRoute } from '@angular/router';
 import { ScanparamsService } from './services/scanparams.service';
 
 @Component({
@@ -27,6 +26,7 @@ export class AppComponent implements OnInit {
   urlVehiculo = document.referrer;
   /* urlVehiculo: string = "https://articulo.tucarro.com.co/MCO-558397266-brilliance-2020-v3-_JM#promoted-items-new=0"; */
   activarVistaError = false;
+  contador: number = 0;
   splash: boolean;
 
   constructor(public apiMercadolibre: ApiMercadolibreService,
@@ -37,12 +37,19 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
       this.scanParams.getParamIdVehiculo().subscribe((data: any) => {
-        if (data.idvehiculo) {
-          this.idVehiculo = data.idvehiculo;
-          this.apiMercadolibre.usarIdVehiculo(this.idVehiculo);
-        } else {
-          this.apiMercadolibre.obtenerIdVehiculo(this.urlVehiculo);
-        }
+          this.contador = this.contador + 1;
+          console.log(this.contador);
+          if (data.idvehiculo && this.contador > 1) {
+            if (data.idvehiculo) {
+              this.idVehiculo = data.idvehiculo;
+              this.apiMercadolibre.usarIdVehiculo(this.idVehiculo);
+            } else {
+              this.apiMercadolibre.obtenerIdVehiculo(this.urlVehiculo);
+            }
+          }
+          setTimeout(() => {
+            this.centralesRiesgo.cargador = false;
+          }, 3000);
       });
       this.scanParams.getParams();
       this.animasplash();

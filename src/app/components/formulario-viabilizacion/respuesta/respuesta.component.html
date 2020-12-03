@@ -65,8 +65,8 @@
             <!-- Negativos -->
 
             <div class="caso" *ngIf="centralesRiesgo.respuestaId == -1">
-                <img [src]="const.negado" alt="negado">
-                <p class="mensaje">
+                <img [src]="const.negado" class="negado">
+                <p class="mensajeNeg">
                     ¡Ups ocurrió un error!
                 </p>
                 <p class="comentario">
@@ -75,7 +75,7 @@
             </div>
 
             <div class="caso" *ngIf="centralesRiesgo.respuestaId == 1">
-                <img [src]="const.negado" alt="negado">
+                <img [src]="const.negado" class="negado">
                 <p class="mensajeNeg">
                     Lo sentimos
                 </p>

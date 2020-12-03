@@ -41,7 +41,7 @@
 #aprobado{
     img{
         width: 100%;
-        padding: 130px 130px 0px 130px;
+        /* padding: 130px 130px 0px 130px; */
         @include Asmall(){
             padding: 40px 20px 0;
         }
@@ -49,4 +49,9 @@
             padding: 40px 20px 0;
         }
     }
+}
+
+img.negado{
+    width: 35% !important;
+    padding: 10px;
 }

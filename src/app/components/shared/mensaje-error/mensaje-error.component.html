@@ -24,6 +24,18 @@
                 <button mat-button (click)="apiMercadolibre.volverNavegador()">VOLVER A MERCADOLIBRE</button>
             </div>
         </div>
+
+        <div class="mensaje">
+            <div class="msjError">Error 404</div><br>
+            Ups! <strong>Accediste directamente</strong><br><br>
+            <div class="detalles">
+                Un error ha ocurrido.<br>
+                Al parecer accediste directamente, escoge el mejor vehiculo para tí, acá te estaremos esperando
+            </div>
+            <div class="contBoton center">
+                <button mat-button (click)="apiMercadolibre.volverNavegador()">VOLVER A MERCADOLIBRE</button>
+            </div>
+        </div>
         
         <div class="imagen">
             <img [src]="const.errorApi" alt="Error API">

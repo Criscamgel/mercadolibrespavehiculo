@@ -228,9 +228,6 @@ export class FormularioViabilizacionComponent implements OnInit {
     this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
       this.centralesRiesgo.respuestaId = res.IdResultado;
       this.centralesRiesgo.cargador = false;
-        if ( res.IdResultado == -1) {
-           this.apiMercadolibre.setSeleccionMensaje(2);
-        }
     });
   }
 
