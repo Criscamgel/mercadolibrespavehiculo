@@ -200,6 +200,11 @@
   }
 }
 
+button#stepThreeNoImportant{
+  background: none !important;
+  color: $color-secundario !important;
+}
+
 span.mat-button-wrapper{
   text-transform: uppercase !important;
 }

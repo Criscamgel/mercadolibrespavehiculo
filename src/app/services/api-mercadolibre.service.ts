@@ -58,7 +58,6 @@ export class ApiMercadolibreService {
   }
 
   setSeleccionMensaje(value) {
-    console.log('setSeleccionMensaje');
     this.numeroError = value;
     this.errorApi = true;
   }

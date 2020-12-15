@@ -15,6 +15,11 @@ export class CentralesRiesgoService {
   const = constantes;
   cargador = false;
   respuestaId: number;
+  respuesta: string;
+  variantePreaprobado: number;
+  sendMail = false;
+  sendWhatsapp = false;
+
 
   public observableAutenticar: any;
   public autenticar: any = 0;
