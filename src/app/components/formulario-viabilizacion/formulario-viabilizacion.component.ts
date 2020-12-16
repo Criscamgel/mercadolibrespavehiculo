@@ -264,19 +264,27 @@ export class FormularioViabilizacionComponent implements OnInit {
               }
               if(r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
                   this.centralesRiesgo.variantePreaprobado = 23;
-                  this.centralesRiesgo.sendWhatsapp = true;
+                  if(this.scanParams.enriquecido){
+                    this.centralesRiesgo.sendWhatsapp = true;
+                  }
               }
               if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
                   this.centralesRiesgo.variantePreaprobado = 24;
-                  this.centralesRiesgo.sendMail = true;
+                  if(this.scanParams.enriquecido){
+                    this.centralesRiesgo.sendMail = true;
+                  }
               }
               if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
                   this.centralesRiesgo.variantePreaprobado = 25;
-                  this.centralesRiesgo.sendMail = true;
+                  if(this.scanParams.enriquecido){
+                    this.centralesRiesgo.sendMail = true;
+                  } 
               }
               if(r == 'preaprobadonosevalidocorreoelectroniconicelularporubica'){
                   this.centralesRiesgo.variantePreaprobado = 26;
+                  if(this.scanParams.enriquecido){
                   this.centralesRiesgo.sendWhatsapp = true;
+                  }
               }
           }else{
               this.centralesRiesgo.variantePreaprobado = 2;
