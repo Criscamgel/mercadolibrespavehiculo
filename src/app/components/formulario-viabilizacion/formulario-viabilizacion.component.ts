@@ -290,7 +290,7 @@ export class FormularioViabilizacionComponent implements OnInit {
               this.centralesRiesgo.variantePreaprobado = 2;
           }
 
-          if(this.scanParams.enriquecido && (this.centralesRiesgo.variantePreaprobado == 4 || this.centralesRiesgo.variantePreaprobado == 3)){
+          if(this.scanParams.enriquecido && (this.centralesRiesgo.respuestaId == 4 || this.centralesRiesgo.respuestaId == 3)){
             this.centralesRiesgo.sendWhatsapp = true;
         }
   }
