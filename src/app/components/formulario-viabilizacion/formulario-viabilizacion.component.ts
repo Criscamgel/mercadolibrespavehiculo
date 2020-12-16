@@ -238,7 +238,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   cleanRespuesta(respuesta) {
-            debugger;
             let r = respuesta.toLowerCase();
             r = r.replace(new RegExp("\\s", 'g'),"");
             r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
