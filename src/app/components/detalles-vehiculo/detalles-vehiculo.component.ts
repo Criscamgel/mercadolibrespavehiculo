@@ -54,7 +54,7 @@ export class DetallesVehiculoComponent  {
 
   obtenerNombreValue(nameTexto: string) {
     const objeto = this.infoVehiculo.attributes.find((item: any) => item.name === nameTexto);
-    if(nameTexto == 'Modelo'){
+    if(nameTexto == 'Año'){
       this.centralesRiesgo.modeloCarro = objeto.value_name
     }
     return objeto.value_name;

@@ -54,6 +54,7 @@ export class FormularioViabilizacionComponent implements OnInit {
       Nombre1: null,
       Celular: null,
       CorreoPersonal: null,
+      ValorVehiculo: null,
       CuotaInicial: null,
       Plazo: null
     },
@@ -215,13 +216,15 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   viabilizar() {
-  /* Igualando */
-  this.contacto.DatosVehiculo.Modelo = this.centralesRiesgo.modeloCarro;
-  this.contacto.DatosBasicos.Plazo = this.centralesRiesgo.plazo;
-  this.contacto.OtrosDatos.InfoTres = this.centralesRiesgo.urlVehiculo;
-  /*  */
 
   this.centralesRiesgo.observableAutenticar.subscribe((value: number) => {
+
+     /* Igualando */
+    this.contacto.DatosBasicos.ValorVehiculo = this.valorFinanciar;
+    this.contacto.DatosVehiculo.Modelo = Number(this.centralesRiesgo.modeloCarro);
+    this.contacto.DatosBasicos.Plazo = Number(this.centralesRiesgo.plazo);
+    this.contacto.OtrosDatos.InfoTres = this.centralesRiesgo.urlVehiculo;
+    /*  */
     
     if (value === 1) {
     this.editable = false;
