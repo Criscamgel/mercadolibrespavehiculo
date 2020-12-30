@@ -19,7 +19,9 @@ export class CentralesRiesgoService {
   variantePreaprobado: number;
   sendMail = false;
   sendWhatsapp = false;
-
+  modeloCarro;
+  plazo: number;
+  urlVehiculo :string;
 
   public observableAutenticar: any;
   public autenticar: any = 0;

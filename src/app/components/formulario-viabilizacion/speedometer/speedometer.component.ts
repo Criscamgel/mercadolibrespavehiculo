@@ -3,6 +3,7 @@ import { ApiCalculadoraService } from 'src/app/services/api-calculadora.service'
 import { FormControl } from '@angular/forms';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { constantes } from 'src/constants/constantes';
+import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 
 @Component({
   selector: 'app-speedometer',
@@ -26,7 +27,8 @@ export class SpeedometerComponent  {
     periodo = new FormControl(48);
     informacionPagar: any;
 
-  constructor(public calculadoraServicio: ApiCalculadoraService, public breakpointObserver: BreakpointObserver) {
+  constructor(public calculadoraServicio: ApiCalculadoraService, 
+    public breakpointObserver: BreakpointObserver, public centralesRiesgo: CentralesRiesgoService) {
 
     this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[0];
     this.periodo.valueChanges.subscribe(value => this.cambioVelocimetro(value));
@@ -51,21 +53,25 @@ export class SpeedometerComponent  {
         case 48:
         this.needleValue = 13;
         this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[0];
+        this.centralesRiesgo.plazo = 4;
         break;
 
         case 60:
         this.needleValue = 37;
         this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[1];
+        this.centralesRiesgo.plazo = 5;
         break;
 
         case 72:
         this.needleValue = 65;
         this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[2];
+        this.centralesRiesgo.plazo = 6;
         break;
 
         case 84:
         this.needleValue = 87;
         this.informacionPagar = this.calculadoraServicio.resultadoCalculadora.resultadoCuota[3];
+        this.centralesRiesgo.plazo = 7;
         break;
     
       default:

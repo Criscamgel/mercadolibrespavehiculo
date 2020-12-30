@@ -53,7 +53,9 @@ export class FormularioViabilizacionComponent implements OnInit {
       NumeroDocumento: null,
       Nombre1: null,
       Celular: null,
-      CorreoPersonal: null
+      CorreoPersonal: null,
+      CuotaInicial: null,
+      Plazo: null
     },
     DatosFinancieros: {
       ActividadEconomica: null,
@@ -66,7 +68,12 @@ export class FormularioViabilizacionComponent implements OnInit {
       ValorFinanciar: null,
       ConcesionarioRadicacion: 0,
       IdentificacionVendedor: 0,
-      InfoUno: null
+      InfoUno: null,
+      InfoTres: null
+    },
+    DatosVehiculo:{
+      Modelo: null,
+      TipoVehiculo: 2
     }
   };
 
@@ -105,6 +112,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     });
 
       this.primero.controls['cuotaInicial'].valueChanges.subscribe(value => {
+      this.contacto.DatosBasicos.CuotaInicial = value;
       this.valorFinanciar = this.infoVehiculo.price;
       this.porcentaje = this.calculadoraServicio.calcularPorcentajeCuotaInicial(value, this.cuotaInicial);
       this.resultadoCalculadora = this.calculadoraServicio.calcularCuota(this.const.cuotas, this.valorFinanciar - value, this.porcentaje);
@@ -207,6 +215,12 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   viabilizar() {
+  /* Igualando */
+  this.contacto.DatosVehiculo.Modelo = this.centralesRiesgo.modeloCarro;
+  this.contacto.DatosBasicos.Plazo = this.centralesRiesgo.plazo;
+  this.contacto.OtrosDatos.InfoTres = this.centralesRiesgo.urlVehiculo;
+  /*  */
+
   this.centralesRiesgo.observableAutenticar.subscribe((value: number) => {
     
     if (value === 1) {

@@ -6,5 +6,6 @@ export interface OtrosDatos {
     IdentificacionVendedor?: number;
     ConcesionarioRadicacion?: number;
     InfoUno: any;
+    InfoTres: any;
 
 }
