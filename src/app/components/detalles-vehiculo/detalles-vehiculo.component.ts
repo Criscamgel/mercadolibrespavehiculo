@@ -55,7 +55,69 @@ export class DetallesVehiculoComponent  {
   obtenerNombreValue(nameTexto: string) {
     const objeto = this.infoVehiculo.attributes.find((item: any) => item.name === nameTexto);
     if(nameTexto == 'Año'){
-      this.centralesRiesgo.modeloCarro = objeto.value_name
+      let model;
+
+      switch (objeto.value_name) {
+
+          case '2010':
+          model = 6;
+          break;
+
+          case '2011':
+          model = 7;
+          break;
+
+          case '2012':
+          model = 8;
+          break;
+
+          case '2013':
+          model = 9;
+          break;
+
+          case '2014':
+          model = 10;
+          break;
+
+          case '2015':
+          model = 11;
+          break;
+
+          case '2016':
+          model = 12;
+          break;
+
+          case '2017':
+          model = 13;
+          break;
+
+          case '2018':
+          model = 14;
+          break;
+
+          case '2019':
+          model = 15;
+          break;
+
+          case '2020':
+          model = 16;
+          break;
+
+          case '2021':
+          model = 17;
+          break;
+
+          case '2022':
+          model = 18;
+          break;
+      
+        default:
+          break;
+      }
+
+      this.centralesRiesgo.modeloCarro = model;
+      
+      
     }
     return objeto.value_name;
   }
