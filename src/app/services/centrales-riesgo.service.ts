@@ -43,8 +43,7 @@ export class CentralesRiesgoService {
   autenticando() {
 
     const bodyT = {
-      Username: this.const.username,
-      Password: this.const.password
+      UserPass: this.const.userpass,
     };
 
     const body = new HttpParams({fromObject: bodyT});

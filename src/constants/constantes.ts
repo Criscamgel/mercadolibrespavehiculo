@@ -26,8 +26,7 @@ export const constantes = {
     valorMinIngreso: 1200000,
 
     /* Credenciales */
-    username: "TuCarro",
-    password: "tuC@rr02019",
+    userpass: "VAB1AEMAYQByAHIAbwA6AHQAdQBDAEAAcgByADAAMgAwADEAOQA=",
     /* Imagenes */
     logoCliente: './assets/logouno.png',
     logoBanco: './assets/logodos.png',
