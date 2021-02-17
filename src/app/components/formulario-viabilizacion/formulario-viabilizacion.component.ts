@@ -198,7 +198,7 @@ export class FormularioViabilizacionComponent implements OnInit {
       this.contacto.OtrosDatos.InfoUno = this.scanParams.utm;
     }
     if (this.scanParams.idc) {
-      this.contacto.OtrosDatos.IdentificacionVendedor = this.scanParams.idc;
+      this.contacto.OtrosDatos.ConcesionarioRadicacion = this.scanParams.idc;
     }
     if (this.scanParams.idv) {
       this.contacto.OtrosDatos.IdentificacionVendedor = this.scanParams.idv;
